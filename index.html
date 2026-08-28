@@ -76,6 +76,19 @@
     --shadow:0 30px 90px rgba(139,92,246,.15);
   }
   *{margin:0;padding:0;box-sizing:border-box}
+  .ic{width:1em;height:1em;display:inline-block;vertical-align:-.15em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+  .s-icon .ic,.serv-ico .ic,.p-ico .ic,.tl-dot .ic{width:1.5rem;height:1.5rem}
+  .btn .ic{width:1.08em;height:1.08em}
+  .chip .ic{width:1.55rem;height:1.55rem;color:var(--cyan)}
+  .theme-btn .ic{width:1.15rem;height:1.15rem}
+  .to-top .ic{width:1.2rem;height:1.2rem}
+  .close .ic{width:1.25rem;height:1.25rem}
+  #toast .ic{color:#4ade80}
+  .mini .ic{width:1.05em;height:1.05em}
+  .mnav a .ic{width:1.5rem;height:1.5rem}
+  .tick .ic{width:.9rem;height:.9rem}
+  .sec-kicker .kico{width:18px;height:18px;color:var(--violet)}
+  .proc .ic{position:absolute;top:16px;right:18px;width:24px;height:24px;color:var(--cyan);opacity:.85}
   html{scroll-behavior:smooth}
   body{
     font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
@@ -442,6 +455,50 @@
 </style>
 </head>
 <body>
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-code" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></g></symbol>
+  <symbol id="i-coffee" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></g></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></g></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></g></symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></g></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></g></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></g></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></g></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></g></symbol>
+  <symbol id="i-sprout" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></g></symbol>
+  <symbol id="i-layout" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></g></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></g></symbol>
+  <symbol id="i-db" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></g></symbol>
+  <symbol id="i-server" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></g></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></g></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></g></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></g></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></g></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></g></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></g></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></g></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></g></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></g></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/></g></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></g></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></g></symbol>
+  <symbol id="i-wrench" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></g></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></g></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></g></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></g></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></g></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></g></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></g></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></g></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></g></symbol>
+  <symbol id="i-plane" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></g></symbol>
+  <symbol id="i-pad" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="5"/><line x1="6" y1="11" x2="6" y2="13"/><line x1="5" y1="12" x2="7" y2="12"/><circle cx="15.5" cy="12" r="1.1"/><circle cx="18.5" cy="12" r="1.1"/></g></symbol>
+  <symbol id="i-octocat" viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></g></symbol>
+  <symbol id="i-branch" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></g></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></g></symbol>
+  <symbol id="i-droplet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></g></symbol>
+</svg>
 
 <div id="progress"></div>
 <nav>
@@ -462,7 +519,7 @@
       <button type="button" data-lang="en">EN</button>
       <button type="button" data-lang="ru">RU</button>
     </div>
-    <button class="theme-btn" id="themeBtn" type="button" aria-label="Tema">🌙</button>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Tema"><svg class="ic" aria-hidden="true"><use href="#i-moon"/></svg></button>
     <a href="#contact" class="nav-cta" data-i18n="nav.cta">Bog'lanish</a>
     <button class="burger" id="burger" aria-label="Menyu"><span></span><span></span><span></span></button>
   </div>
@@ -481,7 +538,7 @@
       <p class="hero-sub" data-i18n="hero.sub">Full-stack yo'nalishni <b>to'liq tugatganman</b>. Java, frontend va backend texnologiyalarida ishlayman. <b>PC savodxonlik</b> — yuqori darajada.</p>
       <div class="cta">
         <a href="#contact" class="btn btn-primary" data-i18n="hero.ctaContact">Bog'lanish</a>
-        <a href="cv.html" class="btn btn-ghost" data-i18n="hero.cv">📄 CV</a>
+        <a href="cv.html" class="btn btn-ghost" data-i18n="hero.cv"><svg class="ic" aria-hidden="true"><use href="#i-file"/></svg> CV</a>
         <a href="#certs" class="btn btn-ghost" data-i18n="hero.certs">Sertifikatlar</a>
       </div>
       <div class="socials">
@@ -494,9 +551,9 @@
     <div class="photo-side">
       <span class="orb-bg"></span>
       <span class="dot-ring"></span>
-      <div class="chip chip1"><span>☕</span><div><b data-i18n="chip1.l">Yo'nalish</b><span data-i18n="chip1.v">Dasturlash</span></div></div>
-      <div class="chip chip2"><span>💻</span><div><b data-i18n="chip2.l">Yo'nalish</b><span data-i18n="chip2.v">PC savodxonlik</span></div></div>
-      <div class="chip chip3"><span>🚀</span><div><b data-i18n="chip3.l">Kurs</b><span data-i18n="chip3.v">Full-Stack</span></div></div>
+      <div class="chip chip1"><span><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg></span><div><b data-i18n="chip1.l">Yo'nalish</b><span data-i18n="chip1.v">Dasturlash</span></div></div>
+      <div class="chip chip2"><span><svg class="ic" aria-hidden="true"><use href="#i-laptop"/></svg></span><div><b data-i18n="chip2.l">Yo'nalish</b><span data-i18n="chip2.v">PC savodxonlik</span></div></div>
+      <div class="chip chip3"><span><svg class="ic" aria-hidden="true"><use href="#i-rocket"/></svg></span><div><b data-i18n="chip3.l">Kurs</b><span data-i18n="chip3.v">Full-Stack</span></div></div>
       <div class="frame"><img src="photo_2026-08-17_20-17-42.jpg" alt="Abdulaziz Abduahadov" width="340" height="425" fetchpriority="high" /></div>
     </div>
   </div>
@@ -526,7 +583,7 @@
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <div class="sec-kicker" data-i18n="about.kicker">About / Haqimda</div>
+        <div class="sec-kicker"><svg class="ic kico" aria-hidden="true"><use href="#i-user"/></svg><span data-i18n="about.kicker">About / Haqimda</span></div>
         <h2 data-i18n-html="about.title"><span data-i18n="about.title1">Men</span> <span class="grad" data-i18n="about.title2">kimman?</span></h2>
       </div>
       <div class="sec-right" data-i18n="about.right">Kod yozish — mening sevimli mashg'ulotim va kelajak kasbim.</div>
@@ -536,12 +593,12 @@
         <p data-i18n="about.p1">Mening ismim <b>Abdulaziz Abduahadov</b>. 2015-yil 21-mayda <b>Samarqand viloyati, Oqdaryo tumanida</b> dunyoga kelganman. Kompyuter olami bilan <b>5 yoshimdanoq</b> tanishman — bunga otam sababchi, chunki uning faoliyati ham IT sohasi bilan bog'liq.</p>
         <p data-i18n="about.p2">Full-stack yo'nalishni <b>to'liq tugatganman</b>. Java, frontend, backend va ma'lumotlar bazalari bilan erkin ishlayman. Yangi texnologiyalarni juda tez o'rganaman.</p>
         <ul class="checks">
-          <li><span class="tick">✔</span> <span data-i18n="about.c1">Full-stack to'liq tugatgan</span></li>
-          <li><span class="tick">✔</span> <span data-i18n="about.c2">Java dasturlash</span></li>
-          <li><span class="tick">✔</span> <span data-i18n="about.c3">PC savodxonlik</span></li>
-          <li><span class="tick">✔</span> <img class="tg" src="telegram.png" alt="" /> <span data-i18n="about.c4">Telegram bot</span></li>
-          <li><span class="tick">✔</span> <span data-i18n="about.c5">GitHub'da faol</span></li>
-          <li><span class="tick">✔</span> <span data-i18n="about.c6">Tez o'rganuvchi</span></li>
+          <li><span class="tick"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span> <span data-i18n="about.c1">Full-stack to'liq tugatgan</span></li>
+          <li><span class="tick"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span> <span data-i18n="about.c2">Java dasturlash</span></li>
+          <li><span class="tick"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span> <span data-i18n="about.c3">PC savodxonlik</span></li>
+          <li><span class="tick"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span> <img class="tg" src="telegram.png" alt="" /> <span data-i18n="about.c4">Telegram bot</span></li>
+          <li><span class="tick"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span> <span data-i18n="about.c5">GitHub'da faol</span></li>
+          <li><span class="tick"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span> <span data-i18n="about.c6">Tez o'rganuvchi</span></li>
         </ul>
       </div>
       <div class="card about-card">
@@ -558,10 +615,10 @@
       </div>
     </div>
     <div class="feats">
-      <div class="feat"><span>⚡</span><div><h3 data-i18n="feat.f1t">Tez natija</h3><p data-i18n="feat.f1p">Loyihalarni belgilangan muddatda, sifatli topshiraman.</p></div></div>
-      <div class="feat"><span>🔒</span><div><h3 data-i18n="feat.f2t">Ishonchlilik</h3><p data-i18n="feat.f2p">Har doim onlayn, doim javob beraman.</p></div></div>
-      <div class="feat"><span>🎯</span><div><h3 data-i18n="feat.f3t">Aniqlik</h3><p data-i18n="feat.f3p">Talabni tushunib, aynan kerakli natijani qilaman.</p></div></div>
-      <div class="feat"><span>🌱</span><div><h3 data-i18n="feat.f4t">O'sish</h3><p data-i18n="feat.f4p">Har kuni yangi texnologiya o'rganaman.</p></div></div>
+      <div class="feat"><span><svg class="ic" aria-hidden="true"><use href="#i-zap"/></svg></span><div><h3 data-i18n="feat.f1t">Tez natija</h3><p data-i18n="feat.f1p">Loyihalarni belgilangan muddatda, sifatli topshiraman.</p></div></div>
+      <div class="feat"><span><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg></span><div><h3 data-i18n="feat.f2t">Ishonchlilik</h3><p data-i18n="feat.f2p">Har doim onlayn, doim javob beraman.</p></div></div>
+      <div class="feat"><span><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg></span><div><h3 data-i18n="feat.f3t">Aniqlik</h3><p data-i18n="feat.f3p">Talabni tushunib, aynan kerakli natijani qilaman.</p></div></div>
+      <div class="feat"><span><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg></span><div><h3 data-i18n="feat.f4t">O'sish</h3><p data-i18n="feat.f4p">Har kuni yangi texnologiya o'rganaman.</p></div></div>
     </div>
   </div>
 </section>
@@ -570,41 +627,41 @@
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <div class="sec-kicker" data-i18n="skills.kicker">Skills / Mahorat</div>
+        <div class="sec-kicker"><svg class="ic kico" aria-hidden="true"><use href="#i-zap"/></svg><span data-i18n="skills.kicker">Skills / Mahorat</span></div>
         <h2 data-i18n-html="skills.title"><span data-i18n="skills.title1">Nimalarda</span> <span class="grad" data-i18n="skills.title2">kuchliman?</span></h2>
       </div>
       <div class="sec-right" data-i18n="skills.right">Har bir soha bo'yicha amaliy bilim va tajriba.</div>
     </div>
     <div class="skills-grid">
-      <div class="skill"><div class="s-top"><div class="s-icon">🧩</div><h3 data-i18n="skills.s1t">Frontend</h3></div>
+      <div class="skill"><div class="s-top"><div class="s-icon"><svg class="ic" aria-hidden="true"><use href="#i-layout"/></svg></div><h3 data-i18n="skills.s1t">Frontend</h3></div>
         <p data-i18n="skills.s1p">HTML, CSS, JavaScript — chiroyli va tezkor interfeyslar.</p>
         <div class="bar"><i style="--w:92%"></i></div><div class="meta"><span data-i18n="skills.level">Mahorat</span><b>92%</b></div>
       </div>
-      <div class="skill"><div class="s-top"><div class="s-icon">⚙️</div><h3 data-i18n="skills.s2t">Backend</h3></div>
+      <div class="skill"><div class="s-top"><div class="s-icon"><svg class="ic" aria-hidden="true"><use href="#i-gear"/></svg></div><h3 data-i18n="skills.s2t">Backend</h3></div>
         <p data-i18n="skills.s2p">Server, mantiq va so'rovlarni boshqarish.</p>
         <div class="bar"><i style="--w:85%"></i></div><div class="meta"><span data-i18n="skills.level">Mahorat</span><b>85%</b></div>
       </div>
-      <div class="skill"><div class="s-top"><div class="s-icon">☕</div><h3>Java</h3></div>
+      <div class="skill"><div class="s-top"><div class="s-icon"><svg class="ic" aria-hidden="true"><use href="#i-coffee"/></svg></div><h3>Java</h3></div>
         <p data-i18n="skills.s3p">Java tilida mustahkam bilim va amaliyot.</p>
         <div class="bar"><i style="--w:80%"></i></div><div class="meta"><span data-i18n="skills.level">Mahorat</span><b>80%</b></div>
       </div>
-      <div class="skill"><div class="s-top"><div class="s-icon">🗄️</div><h3 data-i18n="skills.s4t">Database</h3></div>
+      <div class="skill"><div class="s-top"><div class="s-icon"><svg class="ic" aria-hidden="true"><use href="#i-db"/></svg></div><h3 data-i18n="skills.s4t">Database</h3></div>
         <p data-i18n="skills.s4p">Ma'lumotlar bazasi va so'rovlar.</p>
         <div class="bar"><i style="--w:82%"></i></div><div class="meta"><span data-i18n="skills.level">Mahorat</span><b>82%</b></div>
       </div>
-      <div class="skill"><div class="s-top"><div class="s-icon">🌐</div><h3>API</h3></div>
+      <div class="skill"><div class="s-top"><div class="s-icon"><svg class="ic" aria-hidden="true"><use href="#i-server"/></svg></div><h3>API</h3></div>
         <p data-i18n="skills.s5p">REST API va integratsiya.</p>
         <div class="bar"><i style="--w:78%"></i></div><div class="meta"><span data-i18n="skills.level">Mahorat</span><b>78%</b></div>
       </div>
-      <div class="skill"><div class="s-top"><div class="s-icon">💻</div><h3 data-i18n="skills.s6t">PC savodxonlik</h3></div>
+      <div class="skill"><div class="s-top"><div class="s-icon"><svg class="ic" aria-hidden="true"><use href="#i-laptop"/></svg></div><h3 data-i18n="skills.s6t">PC savodxonlik</h3></div>
         <p data-i18n="skills.s6p">Kompyuter bilan professional ishlash.</p>
         <div class="bar"><i style="--w:95%"></i></div><div class="meta"><span data-i18n="skills.level">Mahorat</span><b>95%</b></div>
       </div>
     </div>
     <div class="techs">
-      <span>🧡 HTML</span><span>💙 CSS</span><span>💛 JavaScript</span><span>🔷 TypeScript</span>
-      <span>☕ Java</span><span>🗄️ SQL</span><span>🌿 Git</span><span>🐙 GitHub</span>
-      <span>🌐 REST API</span><span>✈️ Telegram API</span>
+      <span><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg> HTML</span><span><svg class="ic" aria-hidden="true"><use href="#i-droplet"/></svg> CSS</span><span><svg class="ic" aria-hidden="true"><use href="#i-zap"/></svg> JavaScript</span><span><svg class="ic" aria-hidden="true"><use href="#i-box"/></svg> TypeScript</span>
+      <span><svg class="ic" aria-hidden="true"><use href="#i-coffee"/></svg> Java</span><span><svg class="ic" aria-hidden="true"><use href="#i-db"/></svg> SQL</span><span><svg class="ic" aria-hidden="true"><use href="#i-branch"/></svg> Git</span><span><svg class="ic" aria-hidden="true"><use href="#i-octocat"/></svg> GitHub</span>
+      <span><svg class="ic" aria-hidden="true"><use href="#i-server"/></svg> REST API</span><span><svg class="ic" aria-hidden="true"><use href="#i-plane"/></svg> Telegram API</span>
     </div>
   </div>
 </section>
@@ -613,22 +670,22 @@
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <div class="sec-kicker" data-i18n="services.kicker">Services / Xizmatlar</div>
+        <div class="sec-kicker"><svg class="ic kico" aria-hidden="true"><use href="#i-briefcase"/></svg><span data-i18n="services.kicker">Services / Xizmatlar</span></div>
         <h2 data-i18n-html="services.title"><span data-i18n="services.title1">Nimalar</span> <span class="grad" data-i18n="services.title2">qila olaman?</span></h2>
       </div>
       <div class="sec-right" data-i18n="services.right">Men bilan ishlab, sifatli natija olasiz.</div>
     </div>
     <div class="serv-grid">
-      <div class="serv"><div class="serv-ico">🖥️</div><h3 data-i18n="services.s1t">Web-sayt yaratish</h3>
+      <div class="serv"><div class="serv-ico"><svg class="ic" aria-hidden="true"><use href="#i-monitor"/></svg></div><h3 data-i18n="services.s1t">Web-sayt yaratish</h3>
         <p data-i18n="services.s1p">Chiroyli, tezkor va zamonaviy shaxsiy yoki biznes web-saytlar.</p>
         <a href="https://t.me/Laziz_Abduahadov" target="_blank" rel="noopener" data-i18n="services.link">Bog'lanish →</a></div>
-      <div class="serv"><div class="serv-ico">✈️</div><h3 data-i18n="services.s2t">Telegram bot</h3>
+      <div class="serv"><div class="serv-ico"><svg class="ic" aria-hidden="true"><use href="#i-plane"/></svg></div><h3 data-i18n="services.s2t">Telegram bot</h3>
         <p data-i18n="services.s2p">Buyurtma, javob berish va avtomatlashtirish botlari.</p>
         <a href="https://t.me/Laziz_Abduahadov" target="_blank" rel="noopener" data-i18n="services.link">Bog'lanish →</a></div>
-      <div class="serv"><div class="serv-ico">☕</div><h3 data-i18n="services.s3t">Java dastur</h3>
+      <div class="serv"><div class="serv-ico"><svg class="ic" aria-hidden="true"><use href="#i-coffee"/></svg></div><h3 data-i18n="services.s3t">Java dastur</h3>
         <p data-i18n="services.s3p">Java tilida dastur va ilovalar yaratish.</p>
         <a href="https://t.me/Laziz_Abduahadov" target="_blank" rel="noopener" data-i18n="services.link">Bog'lanish →</a></div>
-      <div class="serv"><div class="serv-ico">🎓</div><h3 data-i18n="services.s4t">Dasturlashdan saboq</h3>
+      <div class="serv"><div class="serv-ico"><svg class="ic" aria-hidden="true"><use href="#i-cap"/></svg></div><h3 data-i18n="services.s4t">Dasturlashdan saboq</h3>
         <p data-i18n="services.s4p">Boshlang'ich dasturchilarga HTML, CSS, Java bo'yicha yordam.</p>
         <a href="https://t.me/Laziz_Abduahadov" target="_blank" rel="noopener" data-i18n="services.link">Bog'lanish →</a></div>
     </div>
@@ -639,16 +696,16 @@
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <div class="sec-kicker" data-i18n="process.kicker">Process / Jarayon</div>
+        <div class="sec-kicker"><svg class="ic kico" aria-hidden="true"><use href="#i-layers"/></svg><span data-i18n="process.kicker">Process / Jarayon</span></div>
         <h2 data-i18n-html="process.title"><span data-i18n="process.title1">Ish</span> <span class="grad" data-i18n="process.title2">jarayoni</span></h2>
       </div>
       <div class="sec-right" data-i18n="process.right">Loyiha qanday bosqichlardan o'tadi.</div>
     </div>
     <div class="proc-grid">
-      <div class="proc"><b>01</b><h3 data-i18n="process.p1t">Suhbat</h3><p data-i18n="process.p1p">Talab va g'oyani muhokama qilamiz.</p></div>
-      <div class="proc"><b>02</b><h3 data-i18n="process.p2t">Reja</h3><p data-i18n="process.p2p">Loyiha tuzilishi va muddatni aniqlaymiz.</p></div>
-      <div class="proc"><b>03</b><h3 data-i18n="process.p3t">Kodlash</h3><p data-i18n="process.p3p">Loyihani sifatli va tez ishlab chiqaman.</p></div>
-      <div class="proc"><b>04</b><h3 data-i18n="process.p4t">Tekshirish</h3><p data-i18n="process.p4p">Tayyor natijani tekshirib topshiraman.</p></div>
+      <div class="proc"><b>01</b><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg><h3 data-i18n="process.p1t">Suhbat</h3><p data-i18n="process.p1p">Talab va g'oyani muhokama qilamiz.</p></div>
+      <div class="proc"><b>02</b><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg><h3 data-i18n="process.p2t">Reja</h3><p data-i18n="process.p2p">Loyiha tuzilishi va muddatni aniqlaymiz.</p></div>
+      <div class="proc"><b>03</b><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg><h3 data-i18n="process.p3t">Kodlash</h3><p data-i18n="process.p3p">Loyihani sifatli va tez ishlab chiqaman.</p></div>
+      <div class="proc"><b>04</b><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><h3 data-i18n="process.p4t">Tekshirish</h3><p data-i18n="process.p4p">Tayyor natijani tekshirib topshiraman.</p></div>
     </div>
   </div>
 </section>
@@ -657,7 +714,7 @@
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <div class="sec-kicker" data-i18n="projects.kicker">Projects / Loyihalar</div>
+        <div class="sec-kicker"><svg class="ic kico" aria-hidden="true"><use href="#i-grid"/></svg><span data-i18n="projects.kicker">Projects / Loyihalar</span></div>
         <h2 data-i18n-html="projects.title"><span data-i18n="projects.title1">GitHub'da</span> <span class="grad" data-i18n="projects.title2">loyihalarim</span></h2>
       </div>
       <div class="sec-right" data-i18n="projects.right">Real va ishlaydigan loyihalar — barchasi GitHub profilimda ochiq.</div>
@@ -671,32 +728,32 @@
     </div>
     <div class="proj-grid">
       <a class="proj show" data-cat="game" href="https://github.com/Laziz730/3D-O-YIN" target="_blank" rel="noopener">
-        <div class="p-head"><div class="p-ico">🎮</div><h3>3D O'YIN</h3></div>
+        <div class="p-head"><div class="p-ico"><svg class="ic" aria-hidden="true"><use href="#i-pad"/></svg></div><h3>3D O'YIN</h3></div>
         <p data-i18n="projects.pr1">JavaScript asosidagi 3D o'yin — interaktiv o'yin tajribasi.</p>
         <div class="p-foot"><span class="plang">JavaScript</span><span class="pgo" data-i18n="projects.view">Ko'rish →</span></div>
       </a>
       <a class="proj show" data-cat="tool" href="https://github.com/Laziz730/open-budget-simulotor" target="_blank" rel="noopener">
-        <div class="p-head"><div class="p-ico">💰</div><h3>Open Budget</h3></div>
+        <div class="p-head"><div class="p-ico"><svg class="ic" aria-hidden="true"><use href="#i-card"/></svg></div><h3>Open Budget</h3></div>
         <p data-i18n="projects.pr2">Byudjet va moliyalarni nazorat qiluvchi simulyator.</p>
         <div class="p-foot"><span class="plang">JavaScript</span><span class="pgo" data-i18n="projects.view">Ko'rish →</span></div>
       </a>
       <a class="proj show" data-cat="ai" href="https://github.com/Laziz730/senga_u8_ai" target="_blank" rel="noopener">
-        <div class="p-head"><div class="p-ico">🤖</div><h3>Senga U8 AI</h3></div>
+        <div class="p-head"><div class="p-ico"><svg class="ic" aria-hidden="true"><use href="#i-cpu"/></svg></div><h3>Senga U8 AI</h3></div>
         <p data-i18n="projects.pr3">Sun'iy intellekt asosidagi yordamchi loyiha.</p>
         <div class="p-foot"><span class="plang">TypeScript</span><span class="pgo" data-i18n="projects.view">Ko'rish →</span></div>
       </a>
       <a class="proj show" data-cat="bot" href="https://github.com/Laziz730/telegram" target="_blank" rel="noopener">
-        <div class="p-head"><div class="p-ico">✈️</div><h3>Telegram Bot</h3></div>
+        <div class="p-head"><div class="p-ico"><svg class="ic" aria-hidden="true"><use href="#i-plane"/></svg></div><h3>Telegram Bot</h3></div>
         <p data-i18n="projects.pr4">Telegram bot — avtomatlashtirilgan ishlash.</p>
         <div class="p-foot"><span class="plang">TypeScript</span><span class="pgo" data-i18n="projects.view">Ko'rish →</span></div>
       </a>
       <a class="proj show" data-cat="ai" href="https://github.com/Laziz730/tekshir.ai" target="_blank" rel="noopener">
-        <div class="p-head"><div class="p-ico">🧠</div><h3>Tekshir AI</h3></div>
+        <div class="p-head"><div class="p-ico"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg></div><h3>Tekshir AI</h3></div>
         <p data-i18n="projects.pr5">Tekshiruv va tahlil uchun AI yordamchi.</p>
         <div class="p-foot"><span class="plang">TypeScript</span><span class="pgo" data-i18n="projects.view">Ko'rish →</span></div>
       </a>
       <a class="proj show" data-cat="tool" href="https://github.com/Laziz730/fast-edicotion" target="_blank" rel="noopener">
-        <div class="p-head"><div class="p-ico">✏️</div><h3>Fast Editution</h3></div>
+        <div class="p-head"><div class="p-ico"><svg class="ic" aria-hidden="true"><use href="#i-pen"/></svg></div><h3>Fast Editution</h3></div>
         <p data-i18n="projects.pr6">Tezkor va qulay matn muharriri.</p>
         <div class="p-foot"><span class="plang">HTML</span><span class="pgo" data-i18n="projects.view">Ko'rish →</span></div>
       </a>
@@ -708,7 +765,7 @@
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <div class="sec-kicker" data-i18n="certs.kicker">Certificates / Sertifikatlar</div>
+        <div class="sec-kicker"><svg class="ic kico" aria-hidden="true"><use href="#i-award"/></svg><span data-i18n="certs.kicker">Certificates / Sertifikatlar</span></div>
         <h2 data-i18n-html="certs.title"><span data-i18n="certs.title1">Mening</span> <span class="grad" data-i18n="certs.title2">sertifikatlarim</span></h2>
       </div>
       <div class="sec-right" data-i18n="certs.right">O'qigan kurslar bo'yicha rasmiy hujjatlar.</div>
@@ -732,29 +789,29 @@
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <div class="sec-kicker" data-i18n="timeline.kicker">Journey / Yo'l</div>
+        <div class="sec-kicker"><svg class="ic kico" aria-hidden="true"><use href="#i-clock"/></svg><span data-i18n="timeline.kicker">Journey / Yo'l</span></div>
         <h2 data-i18n-html="timeline.title"><span data-i18n="timeline.title1">Rivojlanish</span> <span class="grad" data-i18n="timeline.title2">taqdimoti</span></h2>
       </div>
       <div class="sec-right" data-i18n="timeline.right">Kichik yoshdan to shu kungacha — qisqa tarix.</div>
     </div>
     <div class="tl">
       <div class="tl-item">
-        <div class="tl-dot">👶</div>
+        <div class="tl-dot"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg></div>
         <div class="tl-card"><span class="tl-date">21-may 2015</span><h3 data-i18n="timeline.t1t">Tavallud</h3>
           <p data-i18n="timeline.t1p">Samarqand viloyati, Oqdaryo tumanida dunyoga keldim.</p></div>
       </div>
       <div class="tl-item">
-        <div class="tl-dot">💻</div>
+        <div class="tl-dot"><svg class="ic" aria-hidden="true"><use href="#i-laptop"/></svg></div>
         <div class="tl-card"><span class="tl-date">2020</span><h3 data-i18n="timeline.t2t">IT bilan tanishuv</h3>
           <p data-i18n="timeline.t2p">5 yoshimda otam sababli kompyuter va texnologiyalarga qiziqib qoldim.</p></div>
       </div>
       <div class="tl-item">
-        <div class="tl-dot">🚀</div>
+        <div class="tl-dot"><svg class="ic" aria-hidden="true"><use href="#i-rocket"/></svg></div>
         <div class="tl-card"><span class="tl-date">2025</span><h3 data-i18n="timeline.t3t">Full-Stack kurs tugatildi</h3>
           <p data-i18n="timeline.t3p">Frontend, Backend, Database va API bo'yicha to'liq kursni tamomladim.</p></div>
       </div>
       <div class="tl-item">
-        <div class="tl-dot">☕</div>
+        <div class="tl-dot"><svg class="ic" aria-hidden="true"><use href="#i-coffee"/></svg></div>
         <div class="tl-card"><span class="tl-date">2026</span><h3 data-i18n="timeline.t4t">Java chuqurlashuvi</h3>
           <p data-i18n="timeline.t4p">Java dasturlash tilini chuqurlashtiryapman, yangi loyihalar yaratmoqdaman.</p></div>
       </div>
@@ -766,7 +823,7 @@
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <div class="sec-kicker" data-i18n="faq.kicker">FAQ / Savollar</div>
+        <div class="sec-kicker"><svg class="ic kico" aria-hidden="true"><use href="#i-help"/></svg><span data-i18n="faq.kicker">FAQ / Savollar</span></div>
         <h2 data-i18n-html="faq.title"><span data-i18n="faq.title1">Tez-tez</span> <span class="grad" data-i18n="faq.title2">so'raladi</span></h2>
       </div>
       <div class="sec-right" data-i18n="faq.right">Ko'pchilik so'raydigan savollarga javoblar.</div>
@@ -796,7 +853,7 @@
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <div class="sec-kicker" data-i18n="contact.kicker">Contact / Aloqa</div>
+        <div class="sec-kicker"><svg class="ic kico" aria-hidden="true"><use href="#i-chat"/></svg><span data-i18n="contact.kicker">Contact / Aloqa</span></div>
         <h2 data-i18n-html="contact.title"><span data-i18n="contact.title1">Men bilan</span> <span class="grad" data-i18n="contact.title2">bog'laning</span></h2>
       </div>
       <div class="sec-right" data-i18n="contact.right">Savol, taklif yoki loyiha — doim onlayn.</div>
@@ -809,7 +866,7 @@
       <a href="mailto:sevaraximmotova702@gmail.com" class="c-card">
         <div class="c-icon"><img class="tg tg-lg" src="gmail.png" alt="Email" /></div>
         <div><h3>Email</h3><p>sevaraximmotova702@gmail.com</p>
-          <button class="mini" id="copyMail" type="button" data-i18n="contact.copy">📋 Nusxalash</button></div>
+          <button class="mini" id="copyMail" type="button" data-i18n="contact.copy"><svg class="ic" aria-hidden="true"><use href="#i-copy"/></svg> Nusxalash</button></div>
       </a>
       <a href="https://github.com/Laziz730" target="_blank" rel="noopener" class="c-card">
         <div class="c-icon"><img class="tg tg-lg" src="github.png" alt="GitHub" /></div>
@@ -821,7 +878,7 @@
       </a>
     </div>
     <div class="contact-form">
-      <h3 data-i18n="form.title">💬 Xabar yuboring</h3>
+      <h3 data-i18n="form.title"><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg> Xabar yuboring</h3>
       <p class="sub" data-i18n="form.sub">To'g'ridan-to'g'ri Telegram'ga keladigan xabar formasi. Ism, aloqa va xabaringizni yozing.</p>
       <form id="contactForm" novalidate>
         <div class="hp" aria-hidden="true">
@@ -835,7 +892,7 @@
           <div class="field full"><label for="cfMsg" data-i18n="form.msgL">Xabaringiz</label>
             <textarea id="cfMsg" name="message" rows="4" maxlength="1000" placeholder="Loyiha haqida gapirib bering..." required></textarea></div>
         </div>
-        <button class="btn btn-primary" type="submit" id="cfSend" data-i18n="form.send">📨 Yuborish</button>
+        <button class="btn btn-primary" type="submit" id="cfSend" data-i18n="form.send"><svg class="ic" aria-hidden="true"><use href="#i-plane"/></svg> Yuborish</button>
         <div id="formStatus"></div>
       </form>
     </div>
@@ -849,21 +906,21 @@
 
 <footer>
   <p>© <span id="year">2026</span> <b>Abdulaziz Abduahadov</b>. <span data-i18n="footer.rights">Barcha huquqlar himoyalangan.</span></p>
-  <p style="margin-top:8px">Made with 💜 + ☕ in Uzbekistan</p>
-  <p style="margin-top:6px">🕒 <span data-i18n="footer.uz">O'zbekiston:</span> <b id="uztime">--:--:--</b></p>
+  <p style="margin-top:8px">Made with <svg class="ic" aria-hidden="true"><use href="#i-heart"/></svg> + <svg class="ic" aria-hidden="true"><use href="#i-coffee"/></svg> in Uzbekistan</p>
+  <p style="margin-top:6px"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg> <span data-i18n="footer.uz">O'zbekiston:</span> <b id="uztime">--:--:--</b></p>
 </footer>
 
 <a class="fab" href="https://t.me/Laziz_Abduahadov?text=%D0%A1alom%2C%20portfolio%20saytingizdan%20yozdim." target="_blank" rel="noopener" title="Telegramda yozish"><img src="telegram.png" alt="Telegram" /></a>
-<button class="to-top" id="toTop" title="Yuqoriga" aria-label="Yuqoriga">↑</button>
+<button class="to-top" id="toTop" title="Yuqoriga" aria-label="Yuqoriga"><svg class="ic" aria-hidden="true"><use href="#i-up"/></svg></button>
 
-<div id="lightbox" role="dialog" aria-label="Sertifikat"><img src="" alt="Sertifikat" id="lightImg" /><button class="close" id="lightClose" aria-label="Yopish">✕</button></div>
-<div id="toast">✅ <span data-i18n="toast">Email nusxalandi!</span></div>
+<div id="lightbox" role="dialog" aria-label="Sertifikat"><img src="" alt="Sertifikat" id="lightImg" /><button class="close" id="lightClose" aria-label="Yopish"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button></div>
+<div id="toast"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> <span data-i18n="toast">Email nusxalandi!</span></div>
 
 <div class="mnav">
-  <a href="#home"><span>🏠</span><span data-i18n="nav.home">Bosh</span></a>
-  <a href="#services"><span>🛠️</span><span data-i18n="nav.services">Xizmatlar</span></a>
-  <a href="#projects"><span>🧩</span><span data-i18n="nav.projects">Loyihalar</span></a>
-  <a href="#contact"><span>✈️</span><span data-i18n="nav.contact">Aloqa</span></a>
+  <a href="#home"><span><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg></span><span data-i18n="nav.home">Bosh</span></a>
+  <a href="#services"><span><svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg></span><span data-i18n="nav.services">Xizmatlar</span></a>
+  <a href="#projects"><span><svg class="ic" aria-hidden="true"><use href="#i-layout"/></svg></span><span data-i18n="nav.projects">Loyihalar</span></a>
+  <a href="#contact"><span><svg class="ic" aria-hidden="true"><use href="#i-plane"/></svg></span><span data-i18n="nav.contact">Aloqa</span></a>
 </div>
 
 <script>
@@ -876,7 +933,7 @@
       "nav.cta":"Bog'lanish",
       "hero.badge":"Full-Stack Developer",
       "hero.sub":"Full-stack yo'nalishni <b>to'liq tugatganman</b>. Java, frontend va backend texnologiyalarida ishlayman. <b>PC savodxonlik</b> — yuqori darajada.",
-      "hero.ctaContact":"Bog'lanish","hero.cv":"📄 CV","hero.certs":"Sertifikatlar",
+      "hero.ctaContact":"Bog'lanish","hero.cv":"<svg class='ic' aria-hidden='true'><use href='#i-file'/></svg> CV","hero.certs":"Sertifikatlar",
       "chip1.l":"Yo'nalish","chip1.v":"Dasturlash","chip2.l":"Yo'nalish","chip2.v":"PC savodxonlik","chip3.l":"Kurs","chip3.v":"Full-Stack",
       "stat.years":"Yil kompyuterda","stat.tech":"Texnologiya","stat.course":"Full-stack kurs","stat.energy":"G'ayrat",
       "about.kicker":"About / Haqimda","about.title1":"Men","about.title2":"kimman?","about.right":"Kod yozish — mening sevimli mashg'ulotim va kelajak kasbim.",
@@ -928,9 +985,9 @@
       "faq.q3":"Qanday loyihalarni qabul qilasiz?","faq.a3":"Web-sayt, Telegram bot va Java dasturlar — kichik va o'rta hajmdagi loyihalarni bajaraman.",
       "faq.q4":"Nega menga ishonish mumkin?","faq.a4":"Full-Stack kursni to'liq tugatganman, GitHub'da ochiq loyihalarim va haqiqiy sertifikatlarim bor. Har doim onlaynman va tez javob beraman.",
       "contact.kicker":"Contact / Aloqa","contact.title1":"Men bilan","contact.title2":"bog'laning","contact.right":"Savol, taklif yoki loyiha — doim onlayn.",
-      "contact.copy":"📋 Nusxalash","contact.supportT":"Qo'llab-quvvatlash","contact.supportP":"Doim onlayn",
-      "form.title":"💬 Xabar yuboring","form.sub":"To'g'ridan-to'g'ri Telegram'ga keladigan xabar formasi. Ism, aloqa va xabaringizni yozing.",
-      "form.nameL":"Ismingiz","form.contactL":"Telegram / email","form.msgL":"Xabaringiz","form.send":"📨 Yuborish",
+      "contact.copy":"<svg class='ic' aria-hidden='true'><use href='#i-copy'/></svg> Nusxalash","contact.supportT":"Qo'llab-quvvatlash","contact.supportP":"Doim onlayn",
+      "form.title":"<svg class='ic' aria-hidden='true'><use href='#i-chat'/></svg> Xabar yuboring","form.sub":"To'g'ridan-to'g'ri Telegram'ga keladigan xabar formasi. Ism, aloqa va xabaringizni yozing.",
+      "form.nameL":"Ismingiz","form.contactL":"Telegram / email","form.msgL":"Xabaringiz","form.send":"<svg class='ic' aria-hidden='true'><use href='#i-plane'/></svg> Yuborish",
       "form.err":"Iltimos, ism, aloqa va xabarni to'ldiring.","form.fail":"Xabar yuborilmadi. Telegram orqali yozing: @Laziz_Abduahadov","form.ok":"✅ Xabaringiz yuborildi! Tez orada javob beraman.",
       "contact.ctaT":"Loyihangizni","contact.ctaT2":"birgalikda yaratamiz!","contact.ctaP":"Web-sayt, bot yoki dastur buyurtma qilish uchun yozing.","contact.ctaBtn":"Hozir yozish",
       "footer.rights":"Barcha huquqlar himoyalangan.","footer.uz":"O'zbekiston:","toast":"Email nusxalandi!"
@@ -941,7 +998,7 @@
       "nav.cta":"Contact me",
       "hero.badge":"Full-Stack Developer",
       "hero.sub":"I have <b>fully completed</b> a Full-Stack program. I work with Java, frontend and backend technologies. <b>PC literacy</b> — high level.",
-      "hero.ctaContact":"Contact me","hero.cv":"📄 CV","hero.certs":"Certificates",
+      "hero.ctaContact":"Contact me","hero.cv":"<svg class='ic' aria-hidden='true'><use href='#i-file'/></svg> CV","hero.certs":"Certificates",
       "chip1.l":"Field","chip1.v":"Programming","chip2.l":"Field","chip2.v":"PC literacy","chip3.l":"Course","chip3.v":"Full-Stack",
       "stat.years":"Years with computers","stat.tech":"Technologies","stat.course":"Full-stack course","stat.energy":"Energy",
       "about.kicker":"About / Haqida","about.title1":"Who","about.title2":"am I?","about.right":"Coding is my favourite hobby and my future profession.",
@@ -993,9 +1050,9 @@
       "faq.q3":"What projects do you accept?","faq.a3":"Websites, Telegram bots and Java programs — small and medium-sized projects.",
       "faq.q4":"Why should I trust you?","faq.a4":"I completed the Full-Stack course, my projects are open on GitHub and I have real certificates. I am always online and answer quickly.",
       "contact.kicker":"Contact / Aloqa","contact.title1":"Let's","contact.title2":"get in touch","contact.right":"Questions, ideas or projects — always online.",
-      "contact.copy":"📋 Copy","contact.supportT":"Support","contact.supportP":"Always online",
-      "form.title":"💬 Send a message","form.sub":"A form that delivers directly to Telegram. Write your name, contact and message.",
-      "form.nameL":"Your name","form.contactL":"Telegram / email","form.msgL":"Your message","form.send":"📨 Send",
+      "contact.copy":"<svg class='ic' aria-hidden='true'><use href='#i-copy'/></svg> Copy","contact.supportT":"Support","contact.supportP":"Always online",
+      "form.title":"<svg class='ic' aria-hidden='true'><use href='#i-chat'/></svg> Send a message","form.sub":"A form that delivers directly to Telegram. Write your name, contact and message.",
+      "form.nameL":"Your name","form.contactL":"Telegram / email","form.msgL":"Your message","form.send":"<svg class='ic' aria-hidden='true'><use href='#i-plane'/></svg> Send",
       "form.err":"Please fill in name, contact and message.","form.fail":"Message not sent. Write via Telegram: @Laziz_Abduahadov","form.ok":"✅ Your message was sent! I will reply soon.",
       "contact.ctaT":"Let's build your","contact.ctaT2":"project together!","contact.ctaP":"Write to order a website, bot or application.","contact.ctaBtn":"Write now",
       "footer.rights":"All rights reserved.","footer.uz":"Uzbekistan:","toast":"Email copied!"
@@ -1006,7 +1063,7 @@
       "nav.cta":"Связаться",
       "hero.badge":"Full-Stack разработчик",
       "hero.sub":"Я <b>полностью прошёл</b> направление Full-Stack. Работаю с Java, frontend и backend технологиями. <b>Компьютерная грамотность</b> — высокий уровень.",
-      "hero.ctaContact":"Связаться","hero.cv":"📄 Резюме","hero.certs":"Сертификаты",
+      "hero.ctaContact":"Связаться","hero.cv":"<svg class='ic' aria-hidden='true'><use href='#i-file'/></svg> Резюме","hero.certs":"Сертификаты",
       "chip1.l":"Сфера","chip1.v":"Программирование","chip2.l":"Сфера","chip2.v":"ПК грамотность","chip3.l":"Курс","chip3.v":"Full-Stack",
       "stat.years":"Лет с компьютером","stat.tech":"Технологий","stat.course":"Full-stack курс","stat.energy":"Энергия",
       "about.kicker":"Обо мне","about.title1":"Кто","about.title2":"я?","about.right":"Писать код — моё любимое занятие и будущая профессия.",
@@ -1058,9 +1115,9 @@
       "faq.q3":"Какие проекты вы берёте?","faq.a3":"Сайты, Telegram боты и Java программы — небольшие и средние проекты.",
       "faq.q4":"Почему мне можно доверять?","faq.a4":"Я полностью прошёл Full-Stack курс, мои проекты открыты на GitHub и есть настоящие сертификаты. Всегда на связи и отвечаю быстро.",
       "contact.kicker":"Контакты","contact.title1":"Свяжитесь","contact.title2":"со мной","contact.right":"Вопрос, идея или проект — всегда на связи.",
-      "contact.copy":"📋 Копировать","contact.supportT":"Поддержка","contact.supportP":"Всегда на связи",
-      "form.title":"💬 Отправьте сообщение","form.sub":"Форма, сообщения которой приходят прямо в Telegram. Напишите имя, контакт и сообщение.",
-      "form.nameL":"Ваше имя","form.contactL":"Telegram / email","form.msgL":"Ваше сообщение","form.send":"📨 Отправить",
+      "contact.copy":"<svg class='ic' aria-hidden='true'><use href='#i-copy'/></svg> Копировать","contact.supportT":"Поддержка","contact.supportP":"Всегда на связи",
+      "form.title":"<svg class='ic' aria-hidden='true'><use href='#i-chat'/></svg> Отправьте сообщение","form.sub":"Форма, сообщения которой приходят прямо в Telegram. Напишите имя, контакт и сообщение.",
+      "form.nameL":"Ваше имя","form.contactL":"Telegram / email","form.msgL":"Ваше сообщение","form.send":"<svg class='ic' aria-hidden='true'><use href='#i-plane'/></svg> Отправить",
       "form.err":"Заполните, пожалуйста, имя, контакт и сообщение.","form.fail":"Сообщение не отправлено. Напишите в Telegram: @Laziz_Abduahadov","form.ok":"✅ Ваше сообщение отправлено! Скоро отвечу.",
       "contact.ctaT":"Создадим ваш","contact.ctaT2":"проект вместе!","contact.ctaP":"Напишите, чтобы заказать сайт, бота или программу.","contact.ctaBtn":"Написать сейчас",
       "footer.rights":"Все права защищены.","footer.uz":"Узбекистан:","toast":"Email скопирован!"
@@ -1105,7 +1162,9 @@
   var themeBtn = document.getElementById("themeBtn");
   function setTheme(t) {
     document.documentElement.setAttribute("data-theme", t);
-    themeBtn.textContent = t === "dark" ? "🌙" : "☀️";
+    themeBtn.innerHTML = t === "dark"
+      ? '<svg class="ic" aria-hidden="true"><use href="#i-moon"/></svg>'
+      : '<svg class="ic" aria-hidden="true"><use href="#i-sun"/></svg>';
     document.querySelector('meta[name="theme-color"]').setAttribute("content", t === "dark" ? "#05060f" : "#f4f5fc");
     try { localStorage.setItem("th", t); } catch (e) {}
   }
@@ -1126,7 +1185,7 @@
   var el = document.getElementById("typed");
   var r = 0, c = 0, del = false;
   function type() {
-    var words = typing.roles && typing.roles.length ? typing.roles : typedRolesUz;
+    var words = typing.roles && typing.roles.length ? typing.roles : roleDefault;
     var w = words[typing.pos % words.length];
     if (!del) {
       el.textContent = w.slice(0, ++c);
