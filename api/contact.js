@@ -1,8 +1,9 @@
 // Vercel serverless funktsiya: portfolio aloqa formasini Telegram'ga yuboradi.
-// Vercel -> Settings -> Environment Variables ga quyidagilarni kiriting:
+// Sozlamalar: odatda Vercel Settings -> Environment Variables orqali:
 //   TELEGRAM_BOT_TOKEN = @BotFather dan olingan token
 //   TELEGRAM_CHAT_ID   = xabarlar boradigan chat/user ID (masalan @userinfobot dan)
-// Agar o'rnatilmagan bo'lsa, forma ishlamaydi (frondend Telegram tugmasini taklif qiladi).
+// Aks holda quyidagi default qiymatlar ishlatiladi. Defaultlar public repo'da
+// ochiq ko'rinadi — production uchun env o'rnatish tavsiya etiladi.
 
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
@@ -41,12 +42,8 @@ module.exports = async function handler(req, res) {
     return res.status(429).json({ ok: false, error: "Too many requests" });
   }
 
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-
-  if (!token || !chatId) {
-    return res.status(503).json({ ok: false, error: "Not configured" });
-  }
+  const token = process.env.TELEGRAM_BOT_TOKEN || "8953191527:AAG47EPG2pAilNv51te4CVdWVonB8e5yxbU";
+  const chatId = process.env.TELEGRAM_CHAT_ID || "8030572845";
 
   const text =
     "🌟 *Yangi portfolio xabari* (" + lang.toUpperCase() + ")\n\n" +
@@ -60,7 +57,7 @@ module.exports = async function handler(req, res) {
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: "Markdown" }),
+        body: JSON.stringify({ chat_id: chatId, text: text }),
       }
     );
     const data = await r.json();
