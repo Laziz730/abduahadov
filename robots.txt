@@ -1,0 +1,8 @@
+# Har qanday bot/skriner uchun ruxsat
+User-agent: *
+Allow: /
+
+# Serverless API'ni indekslash shart emas
+Disallow: /api/
+
+Sitemap: https://yourname.uz/sitemap.xml
