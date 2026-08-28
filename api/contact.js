@@ -5,6 +5,34 @@
 // Aks holda quyidagi default qiymatlar ishlatiladi. Defaultlar public repo'da
 // ochiq ko'rinadi — production uchun env o'rnatish tavsiya etiladi.
 
+// Jo'natuvchi "Aloqa" maydoniga @username yoki ID tashlasa, getChat orqali
+// aniqlab, xabarga uning ismi/ID sini qo'shib beradi.
+async function resolveContact(contact, token) {
+  const raw = String(contact || "").trim();
+  const isUsername = raw.startsWith("@") && raw.length > 1;
+  const isNumeric = /^\d+$/.test(raw);
+  let found = null;
+  try {
+    const req = await fetch(
+      "https://api.telegram.org/bot" + token + "/getChat?chat_id=" +
+        encodeURIComponent(raw)
+    );
+    const data = await req.json();
+    if (data.ok && data.result) {
+      const u = data.result;
+      found = {
+        name: [u.first_name, u.last_name].filter(Boolean).join(" "),
+        username: u.username || "",
+        id: u.id || "",
+        type: u.type || "",
+      };
+    }
+  } catch (e) {
+    /* aniqlash imkoni bo'lmasa, shunchaki ko'rsatiladi */
+  }
+  return { raw, isUsername, isNumeric, found };
+}
+
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ ok: false, error: "Method not allowed" });
@@ -45,11 +73,26 @@ module.exports = async function handler(req, res) {
   const token = process.env.TELEGRAM_BOT_TOKEN || "8953191527:AAG47EPG2pAilNv51te4CVdWVonB8e5yxbU";
   const chatId = process.env.TELEGRAM_CHAT_ID || "8030572845";
 
-  const text =
-    "🌟 *Yangi portfolio xabari* (" + lang.toUpperCase() + ")\n\n" +
+  const c = await resolveContact(contact, token);
+
+  let text =
+    "🌟 Yangi portfolio xabari (" + lang.toUpperCase() + ")\n\n" +
     "👤 Ism: " + name + "\n" +
-    "📞 Aloqa: " + contact + "\n\n" +
-    "💬 Xabar:\n" + message;
+    "📞 Aloqa: " + c.raw;
+
+  if (c.found) {
+    const parts = [];
+    if (c.found.name) parts.push("Ism: " + c.found.name);
+    if (c.found.username) parts.push("tg: @" + c.found.username + " (t.me/" + c.found.username + ")");
+    if (c.found.id) parts.push("ID: " + c.found.id);
+    text += "\n🔍 Aniqlangan: " + parts.join(" | ");
+  } else if (c.isUsername) {
+    text += "\n🔍 tg: t.me/" + c.raw.slice(1);
+  } else if (c.isNumeric) {
+    text += "\n🔍 (raqamli aloqa — telefon yoki Telegram ID bo'lishi mumkin)";
+  }
+
+  text += "\n\n💬 Xabar:\n" + message;
 
   try {
     const r = await fetch(
