@@ -5,4 +5,4 @@ Allow: /
 # Serverless API'ni indekslash shart emas
 Disallow: /api/
 
-Sitemap: https://yourname.uz/sitemap.xml
+Sitemap: https://abduahadov.uz/sitemap.xml
