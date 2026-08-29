@@ -289,6 +289,14 @@
   .cert img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:#000}
   .cert small{display:block;text-align:center;font-size:.83rem;font-weight:700;padding:10px 4px 6px;color:var(--muted)}
 
+  /* 3D MODELS */
+  .model-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+  .model{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:11px;transition:transform .25s,border-color .25s,box-shadow .25s}
+  .model:hover{transform:translateY(-6px);border-color:var(--violet);box-shadow:var(--shadow)}
+  .model-stage{position:relative;width:100%;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:radial-gradient(circle at 50% 60%,rgba(168,85,247,.18),rgba(6,12,26,.9) 70%);min-height:0}
+  .model-stage model-viewer{width:100%;height:100%;display:block;--poster-color:transparent}
+  .model small{display:block;text-align:center;font-size:.83rem;font-weight:700;padding:10px 4px 6px;color:var(--muted)}
+
   /* TIMELINE */
   .tl{position:relative;max-width:780px;margin:0 auto;padding-left:20px}
   .tl::before{content:"";position:absolute;left:39px;top:10px;bottom:10px;width:3px;border-radius:3px;background:var(--grad)}
@@ -497,6 +505,7 @@
   <symbol id="i-octocat" viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></g></symbol>
   <symbol id="i-branch" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></g></symbol>
   <symbol id="i-box" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></g></symbol>
+  <symbol id="i-cube" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><line x1="12" y1="6.5" x2="12" y2="20"/></g></symbol>
   <symbol id="i-droplet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></g></symbol>
 </svg>
 
@@ -761,6 +770,56 @@
   </div>
 </section>
 
+<section id="threed" style="background:var(--bg2);border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-kicker"><svg class="ic kico" aria-hidden="true"><use href="#i-cube"/></svg><span data-i18n="threed.kicker">3D Models / 3D modellar</span></div>
+        <h2 data-i18n-html="threed.title"><span data-i18n="threed.title1">3D</span> <span class="grad" data-i18n="threed.title2">modellarim</span></h2>
+      </div>
+      <div class="sec-right" data-i18n="threed.right">Interaktiv — modelni sichqoncha yoki barmoq bilan aylantirib ko'ring.</div>
+    </div>
+    <div class="model-grid">
+      <div class="model">
+        <div class="model-stage"><model-viewer alt="BMW M4 Competition (2021)" data-src="models/2021_bmw_m4_competition.glb"camera-controls auto-rotate rotation-per-second="18%" shadow-intensity="0.6" environment-image="neutral" exposure="0.85"></model-viewer></div>
+        <small>BMW M4 Competition (2021)</small>
+      </div>
+      <div class="model">
+        <div class="model-stage"><model-viewer alt="Bugatti La Voiture Noire (2022)" data-src="models/2022_bugatti_la_voiture_noire.glb"camera-controls auto-rotate rotation-per-second="18%" shadow-intensity="0.6" environment-image="neutral" exposure="0.85"></model-viewer></div>
+        <small>Bugatti La Voiture Noire (2022)</small>
+      </div>
+      <div class="model">
+        <div class="model-stage"><model-viewer alt="Chevrolet Tracker RS (2022)" data-src="models/2022_chevrolet_tracker_rs_335t.glb"camera-controls auto-rotate rotation-per-second="18%" shadow-intensity="0.6" environment-image="neutral" exposure="0.85"></model-viewer></div>
+        <small>Chevrolet Tracker RS (2022)</small>
+      </div>
+      <div class="model">
+        <div class="model-stage"><model-viewer alt="BMW i8" data-src="models/bmw_i8.glb"camera-controls auto-rotate rotation-per-second="18%" shadow-intensity="0.6" environment-image="neutral" exposure="0.85"></model-viewer></div>
+        <small>BMW i8</small>
+      </div>
+      <div class="model">
+        <div class="model-stage"><model-viewer alt="Bugatti La Voiture Noire" data-src="models/bugatti_-_la_voiture_noire.glb"camera-controls auto-rotate rotation-per-second="18%" shadow-intensity="0.6" environment-image="neutral" exposure="0.85"></model-viewer></div>
+        <small>Bugatti La Voiture Noire</small>
+      </div>
+      <div class="model">
+        <div class="model-stage"><model-viewer alt="Chevrolet Damas" data-src="models/chevrolet_damas.glb"camera-controls auto-rotate rotation-per-second="18%" shadow-intensity="0.6" environment-image="neutral" exposure="0.85"></model-viewer></div>
+        <small>Chevrolet Damas</small>
+      </div>
+      <div class="model">
+        <div class="model-stage"><model-viewer alt="Gaming Desktop PC" data-src="models/gaming_desktop_pc.glb"camera-controls auto-rotate rotation-per-second="18%" shadow-intensity="0.6" environment-image="neutral" exposure="0.85"></model-viewer></div>
+        <small>Gaming Desktop PC</small>
+      </div>
+      <div class="model">
+        <div class="model-stage"><model-viewer alt="KamAZ 4310" data-src="models/kamaz_4310.glb"camera-controls auto-rotate rotation-per-second="18%" shadow-intensity="0.6" environment-image="neutral" exposure="0.85"></model-viewer></div>
+        <small>KamAZ 4310</small>
+      </div>
+      <div class="model">
+        <div class="model-stage"><model-viewer alt="Sky Player Home Diorama" data-src="models/stylised_sky_player_home_dioroma.glb"camera-controls auto-rotate rotation-per-second="18%" shadow-intensity="0.6" environment-image="neutral" exposure="0.85"></model-viewer></div>
+        <small>Sky Player Home Diorama</small>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="certs">
   <div class="wrap">
     <div class="sec-head">
@@ -972,6 +1031,7 @@
       "projects.pr4":"Telegram bot — avtomatlashtirilgan ishlash.",
       "projects.pr5":"Tekshiruv va tahlil uchun AI yordamchi.",
       "projects.pr6":"Tezkor va qulay matn muharriri.",
+      "threed.kicker":"3D Models / 3D modellar","threed.title1":"3D","threed.title2":"modellarim","threed.right":"Interaktiv va realistik — faqat mavjud model, ko'chirilgan emas."
       "certs.kicker":"Certificates / Sertifikatlar","certs.title1":"Mening","certs.title2":"sertifikatlarim","certs.right":"O'qigan kurslar bo'yicha rasmiy hujjatlar.",
       "cert.1":"Sertifikat 1","cert.2":"Sertifikat 2","cert.3":"Sertifikat 3","cert.4":"Sertifikat 4","cert.5":"Sertifikat 5",
       "timeline.kicker":"Journey / Yo'l","timeline.title1":"Rivojlanish","timeline.title2":"taqdimoti","timeline.right":"Kichik yoshdan to shu kungacha — qisqa tarix.",
@@ -1037,6 +1097,7 @@
       "projects.pr4":"Telegram bot — automated work.",
       "projects.pr5":"AI assistant for checks and analysis.",
       "projects.pr6":"A fast and convenient text editor.",
+      "threed.kicker":"3D Models / 3D modellar","threed.title1":"My","threed.title2":"3D models","threed.right":"Interactive and realistic — real models, not reposted."
       "certs.kicker":"Certificates / Sertifikatlar","certs.title1":"My","certs.title2":"certificates","certs.right":"Official documents of completed courses.",
       "cert.1":"Certificate 1","cert.2":"Certificate 2","cert.3":"Certificate 3","cert.4":"Certificate 4","cert.5":"Certificate 5",
       "timeline.kicker":"Journey / Yo'l","timeline.title1":"Growth","timeline.title2":"timeline","timeline.right":"A short story from early days until now.",
@@ -1102,6 +1163,7 @@
       "projects.pr4":"Telegram бот — автоматизированная работа.",
       "projects.pr5":"AI ассистент для проверок и анализа.",
       "projects.pr6":"Быстрый и удобный текстовый редактор.",
+      "threed.kicker":"3D - модели","threed.title1":"Мои","threed.title2":"3D-модели","threed.right":"Интерактивные и реалистичные — настоящие модели, не репост."
       "certs.kicker":"Сертификаты","certs.title1":"Мои","certs.title2":"сертификаты","certs.right":"Официальные документы пройденных курсов.",
       "cert.1":"Сертификат 1","cert.2":"Сертификат 2","cert.3":"Сертификат 3","cert.4":"Сертификат 4","cert.5":"Сертификат 5",
       "timeline.kicker":"Путь","timeline.title1":"История","timeline.title2":"развития","timeline.right":"Короткая история с детства до сегодня.",
@@ -1394,9 +1456,29 @@
     });
   }
 
+  /* 3D MODEL LAZY LOAD: ko'rinadigan paytda src beriladi (173 MB birdan yuklanmaydi) */
+  var mvs = document.querySelectorAll("model-viewer[data-src]");
+  if (mvs.length) {
+    if ("IntersectionObserver" in window) {
+      var mo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) {
+            var mv = en.target;
+            mv.setAttribute("src", mv.getAttribute("data-src"));
+            mo.unobserve(mv);
+          }
+        });
+      }, { rootMargin: "400px" });
+      mvs.forEach(function (mv) { mo.observe(mv); });
+    } else {
+      mvs.forEach(function (mv) { mv.setAttribute("src", mv.getAttribute("data-src")); });
+    }
+  }
+
   /* BOSHLANG'ICH TILNI QO'LLASH */
   applyLang(savedLang);
 })();
 </script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
 </body>
 </html>
