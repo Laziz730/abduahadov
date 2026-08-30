@@ -370,6 +370,9 @@
   .cta-box .btn{position:relative}
   .cta-box .qr{margin-top:22px;position:relative}
   .cta-box .qr img{width:132px;height:132px;border-radius:14px;border:1px solid var(--line);background:#fff;padding:8px;box-shadow:0 14px 34px rgba(0,0,0,.35)}
+  .cta-box .qr-box{margin:0 auto;width:132px;height:132px;border-radius:14px;border:1px solid var(--line);background:#fff;box-shadow:0 14px 34px rgba(0,0,0,.35);overflow:hidden}
+  .cta-box .qr-box canvas,.cta-box .qr-box svg{display:block;width:100%;height:100%}
+  .cta-box .qr-box img{display:none}
   .cta-box .qr small{display:block;margin-top:9px;color:var(--muted);font-size:.78rem;font-weight:700}
 
   /* XIZMATLAR */
@@ -994,7 +997,7 @@
       <h3><span class="grad" data-i18n="contact.ctaT">Loyihangizni</span> <span data-i18n="contact.ctaT2">birgalikda yaratamiz!</span></h3>
       <p data-i18n="contact.ctaP">Web-sayt, bot yoki dastur buyurtma qilish uchun yozing.</p>
       <a href="https://t.me/Laziz_Abduahadov?text=%D0%A1alom%2C%20portfolio%20saytingizdan%20loyiha%20buyurtma%20qilmoqchiman." target="_blank" rel="noopener" class="btn btn-primary"><img class="tg" src="telegram.png" alt="" /> <span data-i18n="contact.ctaBtn">Hozir yozish</span></a>
-      <div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Ft.me%2FLaziz_Abduahadov" width="150" height="150" alt="Telegram QR" loading="lazy" /><small data-i18n="contact.qr">Telegram — skaner qiling</small></div>
+      <div class="qr"><div id="qrcode" class="qr-box" aria-label="Telegram QR"></div><small data-i18n="contact.qr">Telegram — skaner qiling</small></div>
     </div>
   </div>
 </section>
@@ -1053,6 +1056,7 @@
   <a href="#contact"><span><svg class="ic" aria-hidden="true"><use href="#i-plane"/></svg></span><span data-i18n="nav.contact">Aloqa</span></a>
 </div>
 
+<script src="vendor/qrcode.min.js"></script>
 <script>
 (function () {
   /* ===== TARJIMA (uz / en / ru) ===== */
@@ -1756,6 +1760,21 @@
         });
       })
       .catch(function () {});
+  }
+
+  /* TELEGRAM QR (tashqi servis emas — brauzer ichida generatsiya) */
+  var qrBox = document.getElementById("qrcode");
+  if (qrBox && window.QRCode) {
+    try {
+      new window.QRCode(qrBox, {
+        text: "https://t.me/Laziz_Abduahadov",
+        width: 132,
+        height: 132,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: window.QRCode.CorrectLevel.L
+      });
+    } catch (e) {}
   }
 
   /* BOSHLANG'ICH TILNI QO'LLASH */
