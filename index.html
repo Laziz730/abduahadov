@@ -149,6 +149,7 @@
   /* HERO */
   .hero{position:relative;overflow:hidden;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:110px 0 70px}
   .hero-bg{position:absolute;inset:0;pointer-events:none}
+  .hero-stars{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
   .orb{position:absolute;border-radius:50%;opacity:.38;animation:orbCycle 22s linear infinite}
   @keyframes orbCycle{0%{filter:blur(90px) hue-rotate(0deg)}100%{filter:blur(90px) hue-rotate(360deg)}}
   .orb1{width:480px;height:480px;background:#7c3aed;top:-160px;left:-120px}
@@ -277,7 +278,11 @@
   .p-ico{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;background:rgba(34,211,238,.14);flex-shrink:0}
   .p-head h3{font-size:1.05rem}
   .proj p{color:var(--muted);font-size:.9rem;flex:1}
-  .p-foot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:13px}
+  .p-foot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:13px;gap:8px;flex-wrap:wrap}
+  .pmeta{display:inline-flex;align-items:center;gap:5px;color:var(--muted);font-size:.82rem;font-weight:800}
+  .pmeta b{font-size:.78rem;color:var(--text)}
+  .pmeta .ic{width:.95em;height:.95em;color:#f59e0b}
+  .pmeta .ic.fk{color:var(--cyan)}
   .plang{font-size:.78rem;font-weight:700;color:var(--cyan);background:rgba(34,211,238,.1);padding:5px 13px;border-radius:50px}
   .pgo{font-size:.88rem;font-weight:700;color:var(--muted);transition:color .2s,transform .2s;display:inline-flex;align-items:center;gap:5px}
   .pgo:hover{color:var(--violet)}
@@ -339,6 +344,15 @@
   .sound-btn svg{width:20px;height:20px}
   .sound-btn:hover{color:var(--main);border-color:var(--main)}
   .sound-btn.off{color:var(--muted)}
+  .sound-btn .mut-ic,.sound-btn .eq{display:none}
+  .sound-btn.off .snd-ic{display:none}
+  .sound-btn.off .mut-ic{display:block}
+  .sound-btn.playing .eq{display:flex;align-items:flex-end;gap:2px;height:16px}
+  .sound-btn.playing .snd-ic,.sound-btn.playing .mut-ic{display:none}
+  .sound-btn .eq i{width:3px;background:var(--grad);border-radius:2px;animation:eqB 1s ease-in-out infinite}
+  .sound-btn .eq i:nth-child(2){animation-delay:.2s}
+  .sound-btn .eq i:nth-child(3){animation-delay:.4s}
+  @keyframes eqB{0%,100%{height:5px}50%{height:16px}}
   .sound-hint{display:flex;align-items:center;gap:8px;margin-top:14px;padding:10px 14px;border:1px dashed var(--main);border-radius:12px;color:var(--text);font-size:.85rem}
   .sound-hint .ic{color:var(--main)}
 
@@ -354,6 +368,9 @@
   .cta-box h3{position:relative;font-size:clamp(1.5rem,3.4vw,2.2rem);margin-bottom:8px}
   .cta-box p{position:relative;color:var(--muted);margin-bottom:24px}
   .cta-box .btn{position:relative}
+  .cta-box .qr{margin-top:22px;position:relative}
+  .cta-box .qr img{width:132px;height:132px;border-radius:14px;border:1px solid var(--line);background:#fff;padding:8px;box-shadow:0 14px 34px rgba(0,0,0,.35)}
+  .cta-box .qr small{display:block;margin-top:9px;color:var(--muted);font-size:.78rem;font-weight:700}
 
   /* XIZMATLAR */
   .serv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
@@ -543,6 +560,7 @@
   <symbol id="i-branch" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></g></symbol>
   <symbol id="i-box" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></g></symbol>
   <symbol id="i-cube" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><line x1="12" y1="6.5" x2="12" y2="20"/></g></symbol>
+  <symbol id="i-fork" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M6 9v4a4 4 0 0 0 4 4h2"/><path d="M18 9v2"/><path d="M18 11a3 3 0 0 1-3 3h-3v4"/></g></symbol>
   <symbol id="i-droplet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></g></symbol>
 </svg>
 
@@ -575,6 +593,7 @@
   <div class="hero-bg">
     <span class="orb orb1"></span>
     <span class="orb orb2"></span>
+    <canvas id="stars" class="hero-stars" aria-hidden="true"></canvas>
   </div>
   <div class="hero-grid wrap">
     <div>
@@ -773,32 +792,32 @@
       <button type="button" data-filter="tool" data-i18n="projects.fTool">Vositalar</button>
     </div>
     <div class="proj-grid">
-      <a class="proj show" data-cat="game" href="https://github.com/Laziz730/3D-O-YIN" target="_blank" rel="noopener">
+      <a class="proj show" data-cat="game" data-repo="3D-O-YIN" href="https://github.com/Laziz730/3D-O-YIN" target="_blank" rel="noopener">
         <div class="p-head"><div class="p-ico"><svg class="ic" aria-hidden="true"><use href="#i-pad"/></svg></div><h3>3D O'YIN</h3></div>
         <p data-i18n="projects.pr1">JavaScript asosidagi 3D o'yin — interaktiv o'yin tajribasi.</p>
         <div class="p-foot"><span class="plang">JavaScript</span><span class="pgo" data-i18n="projects.view">Ko'rish →</span></div>
       </a>
-      <a class="proj show" data-cat="tool" href="https://github.com/Laziz730/open-budget-simulotor" target="_blank" rel="noopener">
+      <a class="proj show" data-cat="tool" data-repo="open-budget-simulotor" href="https://github.com/Laziz730/open-budget-simulotor" target="_blank" rel="noopener">
         <div class="p-head"><div class="p-ico"><svg class="ic" aria-hidden="true"><use href="#i-card"/></svg></div><h3>Open Budget</h3></div>
         <p data-i18n="projects.pr2">Byudjet va moliyalarni nazorat qiluvchi simulyator.</p>
         <div class="p-foot"><span class="plang">JavaScript</span><span class="pgo" data-i18n="projects.view">Ko'rish →</span></div>
       </a>
-      <a class="proj show" data-cat="ai" href="https://github.com/Laziz730/senga_u8_ai" target="_blank" rel="noopener">
+      <a class="proj show" data-cat="ai" data-repo="senga_u8_ai" href="https://github.com/Laziz730/senga_u8_ai" target="_blank" rel="noopener">
         <div class="p-head"><div class="p-ico"><svg class="ic" aria-hidden="true"><use href="#i-cpu"/></svg></div><h3>Senga U8 AI</h3></div>
         <p data-i18n="projects.pr3">Sun'iy intellekt asosidagi yordamchi loyiha.</p>
         <div class="p-foot"><span class="plang">TypeScript</span><span class="pgo" data-i18n="projects.view">Ko'rish →</span></div>
       </a>
-      <a class="proj show" data-cat="bot" href="https://github.com/Laziz730/telegram" target="_blank" rel="noopener">
+      <a class="proj show" data-cat="bot" data-repo="telegram" href="https://github.com/Laziz730/telegram" target="_blank" rel="noopener">
         <div class="p-head"><div class="p-ico"><svg class="ic" aria-hidden="true"><use href="#i-plane"/></svg></div><h3>Telegram Bot</h3></div>
         <p data-i18n="projects.pr4">Telegram bot — avtomatlashtirilgan ishlash.</p>
         <div class="p-foot"><span class="plang">TypeScript</span><span class="pgo" data-i18n="projects.view">Ko'rish →</span></div>
       </a>
-      <a class="proj show" data-cat="ai" href="https://github.com/Laziz730/tekshir.ai" target="_blank" rel="noopener">
+      <a class="proj show" data-cat="ai" data-repo="tekshir.ai" href="https://github.com/Laziz730/tekshir.ai" target="_blank" rel="noopener">
         <div class="p-head"><div class="p-ico"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg></div><h3>Tekshir AI</h3></div>
         <p data-i18n="projects.pr5">Tekshiruv va tahlil uchun AI yordamchi.</p>
         <div class="p-foot"><span class="plang">TypeScript</span><span class="pgo" data-i18n="projects.view">Ko'rish →</span></div>
       </a>
-      <a class="proj show" data-cat="tool" href="https://github.com/Laziz730/fast-edicotion" target="_blank" rel="noopener">
+      <a class="proj show" data-cat="tool" data-repo="fast-edicotion" href="https://github.com/Laziz730/fast-edicotion" target="_blank" rel="noopener">
         <div class="p-head"><div class="p-ico"><svg class="ic" aria-hidden="true"><use href="#i-pen"/></svg></div><h3>Fast Editution</h3></div>
         <p data-i18n="projects.pr6">Tezkor va qulay matn muharriri.</p>
         <div class="p-foot"><span class="plang">HTML</span><span class="pgo" data-i18n="projects.view">Ko'rish →</span></div>
@@ -809,7 +828,9 @@
 
 <section id="threed" style="background:var(--bg2);border-top:1px solid var(--line);position:relative">
   <button class="sound-btn" id="sndBtn" type="button" aria-label="Ovoz" title="Ovoz">
-    <svg class="ic" aria-hidden="true"><use href="#i-snd"/></svg>
+    <svg class="ic snd-ic" aria-hidden="true"><use href="#i-snd"/></svg>
+    <svg class="ic mut-ic" aria-hidden="true"><use href="#i-mut"/></svg>
+    <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
   </button>
   <div class="wrap">
     <div class="sec-head">
@@ -973,6 +994,7 @@
       <h3><span class="grad" data-i18n="contact.ctaT">Loyihangizni</span> <span data-i18n="contact.ctaT2">birgalikda yaratamiz!</span></h3>
       <p data-i18n="contact.ctaP">Web-sayt, bot yoki dastur buyurtma qilish uchun yozing.</p>
       <a href="https://t.me/Laziz_Abduahadov?text=%D0%A1alom%2C%20portfolio%20saytingizdan%20loyiha%20buyurtma%20qilmoqchiman." target="_blank" rel="noopener" class="btn btn-primary"><img class="tg" src="telegram.png" alt="" /> <span data-i18n="contact.ctaBtn">Hozir yozish</span></a>
+      <div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Ft.me%2FLaziz_Abduahadov" width="150" height="150" alt="Telegram QR" loading="lazy" /><small data-i18n="contact.qr">Telegram — skaner qiling</small></div>
     </div>
   </div>
 </section>
@@ -1098,7 +1120,7 @@
       "form.title":"<svg class='ic' aria-hidden='true'><use href='#i-chat'/></svg> Xabar yuboring","form.sub":"To'g'ridan-to'g'ri Telegram'ga keladigan xabar formasi. Ism, aloqa va xabaringizni yozing.",
       "form.nameL":"Ismingiz","form.contactL":"Telegram / email","form.msgL":"Xabaringiz","form.send":"<svg class='ic' aria-hidden='true'><use href='#i-plane'/></svg> Yuborish",
       "form.err":"Iltimos, ism, aloqa va xabarni to'ldiring.","form.fail":"Xabar yuborilmadi. Telegram orqali yozing: @Laziz_Abduahadov","form.ok":"✅ Xabaringiz yuborildi! Tez orada javob beraman.",
-      "contact.ctaT":"Loyihangizni","contact.ctaT2":"birgalikda yaratamiz!","contact.ctaP":"Web-sayt, bot yoki dastur buyurtma qilish uchun yozing.","contact.ctaBtn":"Hozir yozish",
+      "contact.ctaT":"Loyihangizni","contact.ctaT2":"birgalikda yaratamiz!","contact.ctaP":"Web-sayt, bot yoki dastur buyurtma qilish uchun yozing.","contact.ctaBtn":"Hozir yozish","contact.qr":"Telegram — skaner qiling",
       "footer.rights":"Barcha huquqlar himoyalangan.","footer.uz":"O'zbekiston:","toast":"Email nusxalandi!",
       "ratings.kicker":"Ratings / Baxolar","ratings.title1":"Portfolioga","ratings.title2":"baxo bering","ratings.right":"Baxoyingiz pastdagi ro'yxatda ko'rinadi.",
       "ratings.prompt":"Necha yulduz beringasiz?","ratings.commentPh":"Mulohaza (ixtiyoriy)...","ratings.send":"Baxo yuborish",
@@ -1168,7 +1190,7 @@
       "form.title":"<svg class='ic' aria-hidden='true'><use href='#i-chat'/></svg> Send a message","form.sub":"A form that delivers directly to Telegram. Write your name, contact and message.",
       "form.nameL":"Your name","form.contactL":"Telegram / email","form.msgL":"Your message","form.send":"<svg class='ic' aria-hidden='true'><use href='#i-plane'/></svg> Send",
       "form.err":"Please fill in name, contact and message.","form.fail":"Message not sent. Write via Telegram: @Laziz_Abduahadov","form.ok":"✅ Your message was sent! I will reply soon.",
-      "contact.ctaT":"Let's build your","contact.ctaT2":"project together!","contact.ctaP":"Write to order a website, bot or application.","contact.ctaBtn":"Write now",
+      "contact.ctaT":"Let's build your","contact.ctaT2":"project together!","contact.ctaP":"Write to order a website, bot or application.","contact.ctaBtn":"Write now","contact.qr":"Scan the QR with Telegram",
       "footer.rights":"All rights reserved.","footer.uz":"Uzbekistan:","toast":"Email copied!",
       "ratings.kicker":"Ratings","ratings.title1":"Rate the","ratings.title2":"portfolio","ratings.right":"Your rating appears in the list below.",
       "ratings.prompt":"How many stars?","ratings.commentPh":"Feedback (optional)...","ratings.send":"Send rating",
@@ -1238,7 +1260,7 @@
       "form.title":"<svg class='ic' aria-hidden='true'><use href='#i-chat'/></svg> Отправьте сообщение","form.sub":"Форма, сообщения которой приходят прямо в Telegram. Напишите имя, контакт и сообщение.",
       "form.nameL":"Ваше имя","form.contactL":"Telegram / email","form.msgL":"Ваше сообщение","form.send":"<svg class='ic' aria-hidden='true'><use href='#i-plane'/></svg> Отправить",
       "form.err":"Заполните, пожалуйста, имя, контакт и сообщение.","form.fail":"Сообщение не отправлено. Напишите в Telegram: @Laziz_Abduahadov","form.ok":"✅ Ваше сообщение отправлено! Скоро отвечу.",
-      "contact.ctaT":"Создадим ваш","contact.ctaT2":"проект вместе!","contact.ctaP":"Напишите, чтобы заказать сайт, бота или программу.","contact.ctaBtn":"Написать сейчас",
+      "contact.ctaT":"Создадим ваш","contact.ctaT2":"проект вместе!","contact.ctaP":"Напишите, чтобы заказать сайт, бота или программу.","contact.ctaBtn":"Написать сейчас","contact.qr":"Отсканируйте QR в Telegram",
       "footer.rights":"Все права защищены.","footer.uz":"Узбекистан:","toast":"Email скопирован!",
       "ratings.kicker":"Оценки","ratings.title1":"Оцените","ratings.title2":"портфолио","ratings.right":"Ваша оценка появится в списке ниже.",
       "ratings.prompt":"Сколько звёзд?","ratings.commentPh":"Отзыв (необязательно)...","ratings.send":"Отправить",
@@ -1642,9 +1664,13 @@
     if (!sndBtn) return;
     sndBtn.classList.toggle("off", !sndOn);
     sndBtn.title = sndOn ? "Ovoz o'chirish" : "Ovoz yoqish";
-    sndBtn.innerHTML = "<svg class='ic' aria-hidden='true'><use href='#i-" + (sndOn ? "snd" : "mut") + "'/></svg>";
   }
-  if (sndEl) sndEl.volume = 0.35;
+  if (sndEl) {
+    sndEl.volume = 0.35;
+    sndEl.addEventListener("play", function () { if (sndBtn) sndBtn.classList.add("playing"); });
+    sndEl.addEventListener("pause", function () { if (sndBtn) sndBtn.classList.remove("playing"); });
+    sndEl.addEventListener("ended", function () { if (sndBtn) sndBtn.classList.remove("playing"); });
+  }
   if (sndBtn) {
     sndBtn.addEventListener("click", function () {
       sndOn = !sndOn;
@@ -1672,6 +1698,65 @@
     if (sndOn && sndInView && sndEl && sndEl.paused) sndPlay();
   });
   paintSnd();
+
+  /* HERO YULDUZ PARTIKALLARI */
+  var heroCv = document.getElementById("stars");
+  if (heroCv && heroCv.getContext && window.requestAnimationFrame) {
+    var sctx2 = heroCv.getContext("2d");
+    var S = [], W2, H2;
+    var reducedM = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function sizeStars() {
+      W2 = heroCv.clientWidth || heroCv.parentNode.clientWidth;
+      H2 = heroCv.clientHeight || heroCv.parentNode.clientHeight;
+      heroCv.width = W2; heroCv.height = H2;
+      var n = Math.min(70, Math.max(18, Math.floor(W2 / 16)));
+      S = [];
+      var cols = ["255,255,255", "34,211,238", "168,85,247"];
+      for (var i = 0; i < n; i++) S.push({ x: Math.random() * W2, y: Math.random() * H2, r: .5 + Math.random() * 1.5, c: cols[i % 3], tw: Math.random() * 6.28, vy: .05 + Math.random() * .2 });
+    }
+    function drawStars() {
+      sctx2.clearRect(0, 0, W2, H2);
+      if (reducedM) return;
+      S.forEach(function (p) {
+        p.tw += .015;
+        p.y += p.vy;
+        if (p.y > H2) p.y = -4;
+        var al = .18 + .55 * Math.abs(Math.sin(p.tw));
+        sctx2.beginPath();
+        sctx2.arc(p.x, p.y, p.r, 0, 6.283);
+        sctx2.fillStyle = "rgba(" + p.c + "," + al.toFixed(3) + ")";
+        sctx2.fill();
+      });
+      requestAnimationFrame(drawStars);
+    }
+    sizeStars();
+    window.addEventListener("resize", sizeStars);
+    requestAnimationFrame(drawStars);
+  }
+
+  /* GITHUB HAQIQIY STATISTIKA (yulduzlar/forklar) */
+  var ghProjs = document.querySelectorAll(".proj[data-repo]");
+  if (ghProjs.length && window.fetch) {
+    fetch("https://api.github.com/users/Laziz730/repos?per_page=100&sort=updated", { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (repos) {
+        if (!repos || !repos.length) return;
+        var byName = {};
+        repos.forEach(function (x) { byName[(x.name || "").toLowerCase()] = x; });
+        ghProjs.forEach(function (a) {
+          var rr = byName[(a.getAttribute("data-repo") || "").toLowerCase()];
+          if (!rr) return;
+          var st = rr.stargazers_count || 0;
+          var fk = rr.forks_count || 0;
+          var m = document.createElement("span");
+          m.className = "pmeta";
+          m.innerHTML = "<svg class='ic' aria-hidden='true'><use href='#i-star'/></svg><b>" + st + "</b><svg class='ic fk' aria-hidden='true'><use href='#i-fork'/></svg><b>" + fk + "</b>";
+          var foot = a.querySelector(".p-foot");
+          if (foot) foot.appendChild(m);
+        });
+      })
+      .catch(function () {});
+  }
 
   /* BOSHLANG'ICH TILNI QO'LLASH */
   applyLang(savedLang);
