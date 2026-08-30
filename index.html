@@ -335,6 +335,14 @@
   .rate-item p{color:var(--txt);font-size:.88rem;word-break:break-word}
   .rate-empty{color:var(--muted);font-size:.9rem;padding:10px 0}
 
+  /* 3D OVOZ */
+  .sound-btn{position:absolute;top:18px;right:18px;width:44px;height:44px;border-radius:50%;background:var(--card2);border:1px solid var(--line);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:color .2s,border-color .2s,transform .2s;z-index:3}
+  .sound-btn svg{width:20px;height:20px}
+  .sound-btn:hover{color:var(--main);border-color:var(--main)}
+  .sound-btn.off{color:var(--muted)}
+  .sound-hint{display:flex;align-items:center;gap:8px;margin-top:14px;padding:10px 14px;border:1px dashed var(--main);border-radius:12px;color:var(--text);font-size:.85rem}
+  .sound-hint .ic{color:var(--main)}
+
   /* CONTACT */
   .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
   .c-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;display:flex;gap:16px;align-items:center;transition:transform .25s,border-color .25s}
@@ -508,6 +516,8 @@
   <symbol id="i-award" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></g></symbol>
   <symbol id="i-star" viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.1-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></g></symbol>
   <symbol id="i-staro" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.1-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></g></symbol>
+  <symbol id="i-snd" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18 6a8 8 0 0 1 0 12"/></g></symbol>
+  <symbol id="i-mut" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M22 9l-6 6"/><path d="M16 9l6 6"/></g></symbol>
   <symbol id="i-grid" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></g></symbol>
   <symbol id="i-layers" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></g></symbol>
   <symbol id="i-help" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></g></symbol>
@@ -798,7 +808,10 @@
   </div>
 </section>
 
-<section id="threed" style="background:var(--bg2);border-top:1px solid var(--line)">
+<section id="threed" style="background:var(--bg2);border-top:1px solid var(--line);position:relative">
+  <button class="sound-btn" id="sndBtn" type="button" aria-label="Ovoz" title="Ovoz">
+    <svg class="ic" aria-hidden="true"><use href="#i-snd"/></svg>
+  </button>
   <div class="wrap">
     <div class="sec-head">
       <div>
@@ -817,7 +830,9 @@
         <small>Bugatti La Voiture Noire</small>
       </div>
     </div>
+    <div class="sound-hint" id="sndHint" hidden><svg class="ic" aria-hidden="true"><use href="#i-snd"/></svg> <span data-i18n="threed.sndHint">Ovoz chiqishi uchun biron joyni bosing — keyin mashinalar oldida ovoz eshitiladi.</span></div>
   </div>
+  <audio id="carSound" src="NhVh2oZsPaZhk208meQZ+fbF81tKaIZc.m4a" preload="auto" loop></audio>
 </section>
 
 <section id="certs">
@@ -1066,7 +1081,7 @@
       "projects.pr4":"Telegram bot — avtomatlashtirilgan ishlash.",
       "projects.pr5":"Tekshiruv va tahlil uchun AI yordamchi.",
       "projects.pr6":"Tezkor va qulay matn muharriri.",
-      "threed.kicker":"3D Models / 3D modellar","threed.title1":"3D","threed.title2":"modellarim","threed.right":"Interaktiv va realistik — faqat mavjud model, ko'chirilgan emas.",
+      "threed.kicker":"3D Models / 3D modellar","threed.title1":"3D","threed.title2":"modellarim","threed.right":"Interaktiv va realistik — faqat mavjud model, ko'chirilgan emas.","threed.sndHint":"Ovoz chiqishi uchun biron joyni bosing — keyin mashinalar oldida ovoz eshitiladi.",
       "certs.kicker":"Certificates / Sertifikatlar","certs.title1":"Mening","certs.title2":"sertifikatlarim","certs.right":"O'qigan kurslar bo'yicha rasmiy hujjatlar.",
       "cert.1":"Sertifikat 1","cert.2":"Sertifikat 2","cert.3":"Sertifikat 3","cert.4":"Sertifikat 4","cert.5":"Sertifikat 5",
       "timeline.kicker":"Journey / Yo'l","timeline.title1":"Rivojlanish","timeline.title2":"taqdimoti","timeline.right":"Kichik yoshdan to shu kungacha — qisqa tarix.",
@@ -1136,7 +1151,7 @@
       "projects.pr4":"Telegram bot — automated work.",
       "projects.pr5":"AI assistant for checks and analysis.",
       "projects.pr6":"A fast and convenient text editor.",
-      "threed.kicker":"3D Models / 3D modellar","threed.title1":"My","threed.title2":"3D models","threed.right":"Interactive and realistic — real models, not reposted.",
+      "threed.kicker":"3D Models / 3D modellar","threed.title1":"My","threed.title2":"3D models","threed.right":"Interactive and realistic — real models, not reposted.","threed.sndHint":"Tap anywhere to enable sound — it will play as you approach the cars.",
       "certs.kicker":"Certificates / Sertifikatlar","certs.title1":"My","certs.title2":"certificates","certs.right":"Official documents of completed courses.",
       "cert.1":"Certificate 1","cert.2":"Certificate 2","cert.3":"Certificate 3","cert.4":"Certificate 4","cert.5":"Certificate 5",
       "timeline.kicker":"Journey / Yo'l","timeline.title1":"Growth","timeline.title2":"timeline","timeline.right":"A short story from early days until now.",
@@ -1206,7 +1221,7 @@
       "projects.pr4":"Telegram бот — автоматизированная работа.",
       "projects.pr5":"AI ассистент для проверок и анализа.",
       "projects.pr6":"Быстрый и удобный текстовый редактор.",
-      "threed.kicker":"3D - модели","threed.title1":"Мои","threed.title2":"3D-модели","threed.right":"Интерактивные и реалистичные — настоящие модели, не репост.",
+      "threed.kicker":"3D - модели","threed.title1":"Мои","threed.title2":"3D-модели","threed.right":"Интерактивные и реалистичные — настоящие модели, не репост.","threed.sndHint":"Нажмите в любом месте, чтобы включить звук — он заиграет, когда подойдёте к моделям.",
       "certs.kicker":"Сертификаты","certs.title1":"Мои","certs.title2":"сертификаты","certs.right":"Официальные документы пройденных курсов.",
       "cert.1":"Сертификат 1","cert.2":"Сертификат 2","cert.3":"Сертификат 3","cert.4":"Сертификат 4","cert.5":"Сертификат 5",
       "timeline.kicker":"Путь","timeline.title1":"История","timeline.title2":"развития","timeline.right":"Короткая история с детства до сегодня.",
@@ -1610,6 +1625,54 @@
       mvs.forEach(function (mv) { mv.setAttribute("src", mv.getAttribute("data-src")); });
     }
   }
+
+  /* 3D OVOZ: mashinalar ko'ringanda ovoz chiqadi */
+  var sndEl = document.getElementById("carSound");
+  var sndBtn = document.getElementById("sndBtn");
+  var sndHint = document.getElementById("sndHint");
+  var sndOn = true;
+  var sndInView = false;
+  function sndPlay() {
+    if (!sndEl || !sndOn) return;
+    var p = sndEl.play();
+    if (p && p.catch) p.catch(function () {
+      if (sndHint) { sndHint.hidden = false; applyLang(savedLang); }
+    });
+  }
+  function paintSnd() {
+    if (!sndBtn) return;
+    sndBtn.classList.toggle("off", !sndOn);
+    sndBtn.title = sndOn ? "Ovoz o'chirish" : "Ovoz yoqish";
+    sndBtn.innerHTML = "<svg class='ic' aria-hidden='true'><use href='#i-" + (sndOn ? "snd" : "mut") + "'/></svg>";
+  }
+  if (sndEl) sndEl.volume = 0.35;
+  if (sndBtn) {
+    sndBtn.addEventListener("click", function () {
+      sndOn = !sndOn;
+      if (sndHint) sndHint.hidden = true;
+      if (sndOn) { if (sndInView) sndPlay(); } else if (sndEl) sndEl.pause();
+      paintSnd();
+    });
+  }
+  var threedSec = document.getElementById("threed");
+  if (threedSec && "IntersectionObserver" in window) {
+    var so = new IntersectionObserver(function (en) {
+      en.forEach(function (e) {
+        sndInView = e.isIntersecting;
+        if (e.isIntersecting) {
+          if (sndEl.paused) sndPlay();
+        } else if (!sndEl.paused) {
+          sndEl.pause();
+        }
+      });
+    }, { threshold: 0.25 });
+    so.observe(threedSec);
+  }
+  document.addEventListener("pointerdown", function sndOnce() {
+    document.removeEventListener("pointerdown", sndOnce);
+    if (sndOn && sndInView && sndEl && sndEl.paused) sndPlay();
+  });
+  paintSnd();
 
   /* BOSHLANG'ICH TILNI QO'LLASH */
   applyLang(savedLang);
