@@ -368,7 +368,8 @@
   .cta-box h3{position:relative;font-size:clamp(1.5rem,3.4vw,2.2rem);margin-bottom:8px}
   .cta-box p{position:relative;color:var(--muted);margin-bottom:24px}
   .cta-box .btn{position:relative}
-  .cta-box .qr{margin-top:22px;position:relative}
+  .cta-box .qr-row{margin-top:22px;display:flex;gap:26px;flex-wrap:wrap;justify-content:center;position:relative}
+  .cta-box .qr{position:relative}
   .cta-box .qr img{width:132px;height:132px;border-radius:14px;border:1px solid var(--line);background:#fff;padding:8px;box-shadow:0 14px 34px rgba(0,0,0,.35)}
   .cta-box .qr-box{margin:0 auto;width:132px;height:132px;border-radius:14px;border:1px solid var(--line);background:#fff;box-shadow:0 14px 34px rgba(0,0,0,.35);overflow:hidden}
   .cta-box .qr-box canvas,.cta-box .qr-box svg{display:block;width:100%;height:100%}
@@ -997,7 +998,10 @@
       <h3><span class="grad" data-i18n="contact.ctaT">Loyihangizni</span> <span data-i18n="contact.ctaT2">birgalikda yaratamiz!</span></h3>
       <p data-i18n="contact.ctaP">Web-sayt, bot yoki dastur buyurtma qilish uchun yozing.</p>
       <a href="https://t.me/Laziz_Abduahadov?text=%D0%A1alom%2C%20portfolio%20saytingizdan%20loyiha%20buyurtma%20qilmoqchiman." target="_blank" rel="noopener" class="btn btn-primary"><img class="tg" src="telegram.png" alt="" /> <span data-i18n="contact.ctaBtn">Hozir yozish</span></a>
-      <div class="qr"><div id="qrcode" class="qr-box" aria-label="Telegram QR"></div><small data-i18n="contact.qr">Telegram — skaner qiling</small></div>
+      <div class="qr-row">
+        <div class="qr"><div id="qrcode" class="qr-box" aria-label="Telegram QR"></div><small data-i18n="contact.qr">Telegram — skaner qiling</small></div>
+        <div class="qr"><div id="qrcode-gh" class="qr-box" aria-label="GitHub QR"></div><small data-i18n="contact.qrGh">GitHub — skaner qiling</small></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1124,7 +1128,7 @@
       "form.title":"<svg class='ic' aria-hidden='true'><use href='#i-chat'/></svg> Xabar yuboring","form.sub":"To'g'ridan-to'g'ri Telegram'ga keladigan xabar formasi. Ism, aloqa va xabaringizni yozing.",
       "form.nameL":"Ismingiz","form.contactL":"Telegram / email","form.msgL":"Xabaringiz","form.send":"<svg class='ic' aria-hidden='true'><use href='#i-plane'/></svg> Yuborish",
       "form.err":"Iltimos, ism, aloqa va xabarni to'ldiring.","form.fail":"Xabar yuborilmadi. Telegram orqali yozing: @Laziz_Abduahadov","form.ok":"✅ Xabaringiz yuborildi! Tez orada javob beraman.",
-      "contact.ctaT":"Loyihangizni","contact.ctaT2":"birgalikda yaratamiz!","contact.ctaP":"Web-sayt, bot yoki dastur buyurtma qilish uchun yozing.","contact.ctaBtn":"Hozir yozish","contact.qr":"Telegram — skaner qiling",
+      "contact.ctaT":"Loyihangizni","contact.ctaT2":"birgalikda yaratamiz!","contact.ctaP":"Web-sayt, bot yoki dastur buyurtma qilish uchun yozing.","contact.ctaBtn":"Hozir yozish","contact.qr":"Telegram — skaner qiling","contact.qrGh":"GitHub — skaner qiling",
       "footer.rights":"Barcha huquqlar himoyalangan.","footer.uz":"O'zbekiston:","toast":"Email nusxalandi!",
       "ratings.kicker":"Ratings / Baxolar","ratings.title1":"Portfolioga","ratings.title2":"baxo bering","ratings.right":"Baxoyingiz pastdagi ro'yxatda ko'rinadi.",
       "ratings.prompt":"Necha yulduz beringasiz?","ratings.commentPh":"Mulohaza (ixtiyoriy)...","ratings.send":"Baxo yuborish",
@@ -1194,7 +1198,7 @@
       "form.title":"<svg class='ic' aria-hidden='true'><use href='#i-chat'/></svg> Send a message","form.sub":"A form that delivers directly to Telegram. Write your name, contact and message.",
       "form.nameL":"Your name","form.contactL":"Telegram / email","form.msgL":"Your message","form.send":"<svg class='ic' aria-hidden='true'><use href='#i-plane'/></svg> Send",
       "form.err":"Please fill in name, contact and message.","form.fail":"Message not sent. Write via Telegram: @Laziz_Abduahadov","form.ok":"✅ Your message was sent! I will reply soon.",
-      "contact.ctaT":"Let's build your","contact.ctaT2":"project together!","contact.ctaP":"Write to order a website, bot or application.","contact.ctaBtn":"Write now","contact.qr":"Scan the QR with Telegram",
+      "contact.ctaT":"Let's build your","contact.ctaT2":"project together!","contact.ctaP":"Write to order a website, bot or application.","contact.ctaBtn":"Write now","contact.qr":"Scan the QR with Telegram","contact.qrGh":"Scan the QR to open GitHub",
       "footer.rights":"All rights reserved.","footer.uz":"Uzbekistan:","toast":"Email copied!",
       "ratings.kicker":"Ratings","ratings.title1":"Rate the","ratings.title2":"portfolio","ratings.right":"Your rating appears in the list below.",
       "ratings.prompt":"How many stars?","ratings.commentPh":"Feedback (optional)...","ratings.send":"Send rating",
@@ -1264,7 +1268,7 @@
       "form.title":"<svg class='ic' aria-hidden='true'><use href='#i-chat'/></svg> Отправьте сообщение","form.sub":"Форма, сообщения которой приходят прямо в Telegram. Напишите имя, контакт и сообщение.",
       "form.nameL":"Ваше имя","form.contactL":"Telegram / email","form.msgL":"Ваше сообщение","form.send":"<svg class='ic' aria-hidden='true'><use href='#i-plane'/></svg> Отправить",
       "form.err":"Заполните, пожалуйста, имя, контакт и сообщение.","form.fail":"Сообщение не отправлено. Напишите в Telegram: @Laziz_Abduahadov","form.ok":"✅ Ваше сообщение отправлено! Скоро отвечу.",
-      "contact.ctaT":"Создадим ваш","contact.ctaT2":"проект вместе!","contact.ctaP":"Напишите, чтобы заказать сайт, бота или программу.","contact.ctaBtn":"Написать сейчас","contact.qr":"Отсканируйте QR в Telegram",
+      "contact.ctaT":"Создадим ваш","contact.ctaT2":"проект вместе!","contact.ctaP":"Напишите, чтобы заказать сайт, бота или программу.","contact.ctaBtn":"Написать сейчас","contact.qr":"Отсканируйте QR в Telegram","contact.qrGh":"Отсканируйте QR для GitHub",
       "footer.rights":"Все права защищены.","footer.uz":"Узбекистан:","toast":"Email скопирован!",
       "ratings.kicker":"Оценки","ratings.title1":"Оцените","ratings.title2":"портфолио","ratings.right":"Ваша оценка появится в списке ниже.",
       "ratings.prompt":"Сколько звёзд?","ratings.commentPh":"Отзыв (необязательно)...","ratings.send":"Отправить",
@@ -1780,6 +1784,19 @@
     try {
       new window.QRCode(qrBox, {
         text: "https://t.me/Laziz_Abduahadov",
+        width: 132,
+        height: 132,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: window.QRCode.CorrectLevel.L
+      });
+    } catch (e) {}
+  }
+  var qrGh = document.getElementById("qrcode-gh");
+  if (qrGh && window.QRCode) {
+    try {
+      new window.QRCode(qrGh, {
+        text: "https://github.com/Laziz730",
         width: 132,
         height: 132,
         colorDark: "#000000",
