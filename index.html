@@ -795,32 +795,32 @@
       <button type="button" data-filter="tool" data-i18n="projects.fTool">Vositalar</button>
     </div>
     <div class="proj-grid">
-      <a class="proj show" data-cat="game" data-repo="3D-O-YIN" href="https://github.com/Laziz730/3D-O-YIN" target="_blank" rel="noopener">
+      <a class="proj show" data-cat="game" data-repo="3D-O-YIN" data-stars="0" data-forks="0" href="https://github.com/Laziz730/3D-O-YIN" target="_blank" rel="noopener">
         <div class="p-head"><div class="p-ico"><svg class="ic" aria-hidden="true"><use href="#i-pad"/></svg></div><h3>3D O'YIN</h3></div>
         <p data-i18n="projects.pr1">JavaScript asosidagi 3D o'yin — interaktiv o'yin tajribasi.</p>
         <div class="p-foot"><span class="plang">JavaScript</span><span class="pgo" data-i18n="projects.view">Ko'rish →</span></div>
       </a>
-      <a class="proj show" data-cat="tool" data-repo="open-budget-simulotor" href="https://github.com/Laziz730/open-budget-simulotor" target="_blank" rel="noopener">
+      <a class="proj show" data-cat="tool" data-repo="open-budget-simulotor" data-stars="0" data-forks="0" href="https://github.com/Laziz730/open-budget-simulotor" target="_blank" rel="noopener">
         <div class="p-head"><div class="p-ico"><svg class="ic" aria-hidden="true"><use href="#i-card"/></svg></div><h3>Open Budget</h3></div>
         <p data-i18n="projects.pr2">Byudjet va moliyalarni nazorat qiluvchi simulyator.</p>
         <div class="p-foot"><span class="plang">JavaScript</span><span class="pgo" data-i18n="projects.view">Ko'rish →</span></div>
       </a>
-      <a class="proj show" data-cat="ai" data-repo="senga_u8_ai" href="https://github.com/Laziz730/senga_u8_ai" target="_blank" rel="noopener">
+      <a class="proj show" data-cat="ai" data-repo="senga_u8_ai" data-stars="0" data-forks="0" href="https://github.com/Laziz730/senga_u8_ai" target="_blank" rel="noopener">
         <div class="p-head"><div class="p-ico"><svg class="ic" aria-hidden="true"><use href="#i-cpu"/></svg></div><h3>Senga U8 AI</h3></div>
         <p data-i18n="projects.pr3">Sun'iy intellekt asosidagi yordamchi loyiha.</p>
         <div class="p-foot"><span class="plang">TypeScript</span><span class="pgo" data-i18n="projects.view">Ko'rish →</span></div>
       </a>
-      <a class="proj show" data-cat="bot" data-repo="telegram" href="https://github.com/Laziz730/telegram" target="_blank" rel="noopener">
+      <a class="proj show" data-cat="bot" data-repo="telegram" data-stars="0" data-forks="0" href="https://github.com/Laziz730/telegram" target="_blank" rel="noopener">
         <div class="p-head"><div class="p-ico"><svg class="ic" aria-hidden="true"><use href="#i-plane"/></svg></div><h3>Telegram Bot</h3></div>
         <p data-i18n="projects.pr4">Telegram bot — avtomatlashtirilgan ishlash.</p>
         <div class="p-foot"><span class="plang">TypeScript</span><span class="pgo" data-i18n="projects.view">Ko'rish →</span></div>
       </a>
-      <a class="proj show" data-cat="ai" data-repo="tekshir.ai" href="https://github.com/Laziz730/tekshir.ai" target="_blank" rel="noopener">
+      <a class="proj show" data-cat="ai" data-repo="tekshir.ai" data-stars="0" data-forks="0" href="https://github.com/Laziz730/tekshir.ai" target="_blank" rel="noopener">
         <div class="p-head"><div class="p-ico"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg></div><h3>Tekshir AI</h3></div>
         <p data-i18n="projects.pr5">Tekshiruv va tahlil uchun AI yordamchi.</p>
         <div class="p-foot"><span class="plang">TypeScript</span><span class="pgo" data-i18n="projects.view">Ko'rish →</span></div>
       </a>
-      <a class="proj show" data-cat="tool" data-repo="fast-edicotion" href="https://github.com/Laziz730/fast-edicotion" target="_blank" rel="noopener">
+      <a class="proj show" data-cat="tool" data-repo="fast-edicotion" data-stars="0" data-forks="0" href="https://github.com/Laziz730/fast-edicotion" target="_blank" rel="noopener">
         <div class="p-head"><div class="p-ico"><svg class="ic" aria-hidden="true"><use href="#i-pen"/></svg></div><h3>Fast Editution</h3></div>
         <p data-i18n="projects.pr6">Tezkor va qulay matn muharriri.</p>
         <div class="p-foot"><span class="plang">HTML</span><span class="pgo" data-i18n="projects.view">Ko'rish →</span></div>
@@ -1738,28 +1738,40 @@
     requestAnimationFrame(drawStars);
   }
 
-  /* GITHUB HAQIQIY STATISTIKA (yulduzlar/forklar) */
+  /* GITHUB STATISTIKA: dastlab qattiq qiymatlar (data-stars/data-forks), keyin API bo'lsa jonli yangilanadi */
   var ghProjs = document.querySelectorAll(".proj[data-repo]");
-  if (ghProjs.length && window.fetch) {
-    fetch("https://api.github.com/users/Laziz730/repos?per_page=100&sort=updated", { cache: "no-store" })
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (repos) {
-        if (!repos || !repos.length) return;
-        var byName = {};
-        repos.forEach(function (x) { byName[(x.name || "").toLowerCase()] = x; });
-        ghProjs.forEach(function (a) {
-          var rr = byName[(a.getAttribute("data-repo") || "").toLowerCase()];
-          if (!rr) return;
-          var st = rr.stargazers_count || 0;
-          var fk = rr.forks_count || 0;
-          var m = document.createElement("span");
-          m.className = "pmeta";
-          m.innerHTML = "<svg class='ic' aria-hidden='true'><use href='#i-star'/></svg><b>" + st + "</b><svg class='ic fk' aria-hidden='true'><use href='#i-fork'/></svg><b>" + fk + "</b>";
-          var foot = a.querySelector(".p-foot");
-          if (foot) foot.appendChild(m);
-        });
-      })
-      .catch(function () {});
+  function ghBadge(st, fk) {
+    var m = document.createElement("span");
+    m.className = "pmeta";
+    m.innerHTML = "<svg class='ic' aria-hidden='true'><use href='#i-star'/></svg><b>" + st + "</b><svg class='ic fk' aria-hidden='true'><use href='#i-fork'/></svg><b>" + fk + "</b>";
+    return m;
+  }
+  if (ghProjs.length) {
+    ghProjs.forEach(function (a) {
+      var foot = a.querySelector(".p-foot");
+      if (!foot) return;
+      foot.appendChild(ghBadge(a.getAttribute("data-stars") || "0", a.getAttribute("data-forks") || "0"));
+    });
+    if (window.fetch) {
+      fetch("https://api.github.com/users/Laziz730/repos?per_page=100&sort=updated", { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (repos) {
+          if (!repos || !repos.length) return;
+          var byName = {};
+          repos.forEach(function (x) { byName[(x.name || "").toLowerCase()] = x; });
+          ghProjs.forEach(function (a) {
+            var rr = byName[(a.getAttribute("data-repo") || "").toLowerCase()];
+            if (!rr) return;
+            var m = ghBadge(rr.stargazers_count || 0, rr.forks_count || 0);
+            var foot = a.querySelector(".p-foot");
+            if (!foot) return;
+            var old = a.querySelector(".pmeta");
+            if (old) old.remove();
+            foot.appendChild(m);
+          });
+        })
+        .catch(function () {});
+    }
   }
 
   /* TELEGRAM QR (tashqi servis emas — brauzer ichida generatsiya) */
