@@ -1,7 +1,7 @@
 // Vercel serverless: saytga kirgan foydalanuvchi lokatsiyasini Telegram'ga yuboradi.
 // Tashrif hisoblagichi — hits.sh (doimiy, bepul, sertifikatsiz) orqali saqlanadi.
 // Har kirishda "Odam kirdi! (jami N)" xabari Telegram'ga boradi.
-const HITS_URL = "https://hits.sh/abduahadov.wwwi.uz.svg?label=x&color=7c3aed&style=flat-square";
+const HITS_URL = "https://hits.sh/abduahadov.wwwi.uz.svg?label=&color=7c3aed&style=flat-square&logoColor=white";
 
 async function hitsTotal() {
   try {

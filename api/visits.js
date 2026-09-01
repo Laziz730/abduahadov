@@ -1,6 +1,6 @@
 // Vercel serverless: saytga kirganlar umumiy sonini qaytaradi.
 // Hisoblagich — hits.sh (https://hits.sh/abduahadov.wwwi.uz.svg) da doimiy saqlanadi.
-const HITS_URL = "https://hits.sh/abduahadov.wwwi.uz.svg?label=x&color=7c3aed&style=flat-square";
+const HITS_URL = "https://hits.sh/abduahadov.wwwi.uz.svg?label=&color=7c3aed&style=flat-square&logoColor=white";
 
 module.exports = async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
