@@ -28,19 +28,16 @@ module.exports = async function handler(req, res) {
   const token = process.env.TELEGRAM_BOT_TOKEN || "8953191527:AAG47EPG2pAilNv51te4CVdWVonB8e5yxbU";
   const chatId = process.env.TELEGRAM_CHAT_ID || "8030572845";
 
-  const lat = Number(body.lat);
-  const lon = Number(body.lon);
-  const hasCoords = Number.isFinite(lat) && Number.isFinite(lon) &&
-    Math.abs(lat) <= 90 && Math.abs(lon) <= 180;
-  const latS = hasCoords ? lat.toFixed(5) : String(body.lat || "?");
-  const lonS = hasCoords ? lon.toFixed(5) : String(body.lon || "?");
-
   const country = String(body.country || "").slice(0, 60);
   const city = String(body.city || "").slice(0, 60);
   const region = String(body.region || "").slice(0, 60);
   const lang = String(body.lang || "uz").slice(0, 8);
   const ua = String(body.ua || "").slice(0, 140);
-  const ip = String(body.ip || "?").slice(0, 60);
+
+  // IP — App Vercel tizimida 'x-forwarded-for' header'dan olinadi (mening server chaqiruvlarim tashlanadi)
+  const fwd = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim();
+  const useIp = fwd && fwd !== "::1" && fwd !== "127.0.0.1" ? fwd : String(body.ip || "?").slice(0, 60);
+  const ip = useIp.slice(0, 60);
 
   const locPart = [city, region, country].filter(Boolean).join(", ") || "Noma'lum";
 
@@ -48,21 +45,13 @@ module.exports = async function handler(req, res) {
 
   const text =
     "👤 Odam kirdi! Portfolio'ga yangi tashrif (jami: " + total + ")\n\n" +
+    "🔢 IP: " + ip + "\n" +
     "📍 Joylashuv: " + locPart + "\n" +
-    "🌐 Koordinata: " + latS + ", " + lonS + "\n" +
     "🗣 Til: " + lang + "\n" +
     "💻 Brauzer: " + ua + "\n" +
-    "🔢 IP: " + ip + "\n" +
     "🕒 Sana: " + new Date().toLocaleString("uz-UZ", { timeZone: "Asia/Tashkent" });
 
   try {
-    if (hasCoords) {
-      await fetch("https://api.telegram.org/bot" + token + "/sendLocation", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: chatId, latitude: lat, longitude: lon }),
-      });
-    }
     const r = await fetch("https://api.telegram.org/bot" + token + "/sendMessage", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

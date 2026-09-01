@@ -1888,7 +1888,7 @@
   /* BOSHLANG'ICH TILNI QO'LLASH */
   applyLang(savedLang);
 
-  /* ===== LOKATSIYA ORQALI TILNI MOSLASH + TELEGRAMGA XABAR ===== */
+  /* ===== IP ORQALI TILNI MOSLASH + TELEGRAMGA XABAR ===== */
   function countryToLang(cc) {
     cc = (cc || "").toUpperCase();
     if (cc === "UZ") return "uz";
@@ -1909,7 +1909,6 @@
       if (last && (Date.now() - last < 86400000)) return;
     } catch (e) {}
     var payload = {
-      lat: data.lat, lon: data.lon,
       country: data.country || "",
       city: data.city || "",
       region: data.region || "",
@@ -1931,40 +1930,19 @@
     var manual = null;
     try { manual = localStorage.getItem("langUser"); } catch (e) {}
 
-    // 1) IP orqali davlat aniqlash (ruxsat so'ramaydi) — tilga ham, botga ham
+    // IP orqali davlat aniqlash (ruxsat so'ramaydi) — tilga ham, botga ham (IP serverda olinadi)
     try {
       fetch("https://ipwho.is/").then(function (r) { return r.json(); }).then(function (d) {
         if (d && d.success) {
           var cc = d.country_code;
           if (!manual && cc) applyLang(countryToLang(cc));
           visitNotify({
-            lat: Number(d.latitude), lon: Number(d.longitude),
-            country: d.country || "", city: d.city || "", region: d.region || ""
+            country: d.country || "",
+            city: d.city || "",
+            region: d.region || ""
           });
         }
       }).catch(function () {});
-    } catch (e) {}
-
-    // 2) GPS (ruxsat bilan) — aniq joylashuv: tilga ham, botga ham
-    if (typeof navigator === "undefined" || !("geolocation" in navigator)) return;
-    try {
-      navigator.geolocation.getCurrentPosition(function (pos) {
-        var lat = pos.coords.latitude;
-        var lon = pos.coords.longitude;
-        fetch("https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=" + lat + "&longitude=" + lon + "&localityLanguage=en")
-          .then(function (r) { return r.json(); })
-          .then(function (d) {
-            var cc = d && d.countryCode;
-            if (!manual && cc) applyLang(countryToLang(cc));
-            visitNotify({
-              lat: lat, lon: lon,
-              country: (d && d.countryName) || "",
-              city: (d && d.city) || "",
-              region: (d && d.principalSubdivision) || ""
-            });
-          })
-          .catch(function () {});
-      }, function () {}, { timeout: 6000, maximumAge: 60000 });
     } catch (e) {}
   }
   setTimeout(detectByGeo, 1000);
