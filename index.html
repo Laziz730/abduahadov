@@ -1329,7 +1329,21 @@
 
   /* ===== TIL + TARJIMA QO'LLASH ===== */
   var savedLang = "uz";
-  try { savedLang = localStorage.getItem("lang") || "uz"; } catch (e) {}
+  try {
+    var _stored = localStorage.getItem("lang");
+    if (_stored && (_stored === "uz" || _stored === "en" || _stored === "ru")) {
+      savedLang = _stored;
+    } else {
+      var _nav = ((navigator.language || navigator.userLanguage || "uz") + "").toLowerCase();
+      if (_nav.indexOf("ru") === 0 || _nav.indexOf("be") === 0 || _nav.indexOf("uk") === 0 || _nav.indexOf("kk") === 0 || _nav.indexOf("ky") === 0 || _nav.indexOf("az") === 0 || _nav.indexOf("hy") === 0 || _nav.indexOf("tg") === 0 || _nav.indexOf("tk") === 0) {
+        savedLang = "ru";
+      } else if (_nav.indexOf("en") === 0) {
+        savedLang = "en";
+      } else {
+        savedLang = "uz";
+      }
+    }
+  } catch (e) { savedLang = "uz"; }
   function applyLang(lang) {
     savedLang = lang;
     var dict = L[lang] || L.uz;
