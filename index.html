@@ -1069,6 +1069,7 @@
   <p>© <span id="year">2026</span> <b>Abdulaziz Abduahadov</b>. <span data-i18n="footer.rights">Barcha huquqlar himoyalangan.</span></p>
   <p style="margin-top:8px">Made with <svg class="ic" aria-hidden="true"><use href="#i-heart"/></svg> + <svg class="ic" aria-hidden="true"><use href="#i-coffee"/></svg> in Uzbekistan</p>
   <p style="margin-top:6px"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg> <span data-i18n="footer.uz">O'zbekiston:</span> <b id="uztime">--:--:--</b></p>
+  <p style="margin-top:6px"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg> <span data-i18n="footer.visits">Saytga kirganlar:</span> <b id="visitCount">0</b></p>
 </footer>
 
 <a class="fab" href="https://t.me/Laziz_Abduahadov?text=%D0%A1alom%2C%20portfolio%20saytingizdan%20yozdim." target="_blank" rel="noopener" title="Telegramda yozish"><img src="telegram.png" alt="Telegram" /></a>
@@ -1165,7 +1166,7 @@
       "form.nameL":"Ismingiz","form.contactL":"Telegram / email","form.msgL":"Xabaringiz","form.send":"<svg class='ic' aria-hidden='true'><use href='#i-plane'/></svg> Yuborish",
       "form.err":"Iltimos, ism, aloqa va xabarni to'ldiring.","form.fail":"Xabar yuborilmadi. Telegram orqali yozing: @Laziz_Abduahadov","form.ok":"✅ Xabaringiz yuborildi! Tez orada javob beraman.",
       "contact.ctaT":"Loyihangizni","contact.ctaT2":"birgalikda yaratamiz!","contact.ctaP":"Web-sayt, bot yoki dastur buyurtma qilish uchun yozing.","contact.ctaBtn":"Hozir yozish","contact.qr":"Telegram — skaner qiling","contact.qrGh":"GitHub — skaner qiling",
-      "footer.rights":"Barcha huquqlar himoyalangan.","footer.uz":"O'zbekiston:","toast":"Email nusxalandi!",
+      "footer.rights":"Barcha huquqlar himoyalangan.","footer.uz":"O'zbekiston:","footer.visits":"Saytga kirganlar:","toast":"Email nusxalandi!",
       "ratings.kicker":"Ratings / Baxolar","ratings.title1":"Portfolioga","ratings.title2":"baxo bering","ratings.right":"Baxoyingiz pastdagi ro'yxatda ko'rinadi.",
       "ratings.prompt":"Necha yulduz beringasiz?","ratings.commentPh":"Mulohaza (ixtiyoriy)...","ratings.send":"Baxo yuborish",
       "ratings.thanks":"Rahmat! Baxoyingiz saqlandi.","ratings.fail":"Baxo yuborilmadi — qayta urinib ko'ring.",
@@ -1238,7 +1239,7 @@
       "form.nameL":"Your name","form.contactL":"Telegram / email","form.msgL":"Your message","form.send":"<svg class='ic' aria-hidden='true'><use href='#i-plane'/></svg> Send",
       "form.err":"Please fill in name, contact and message.","form.fail":"Message not sent. Write via Telegram: @Laziz_Abduahadov","form.ok":"✅ Your message was sent! I will reply soon.",
       "contact.ctaT":"Let's build your","contact.ctaT2":"project together!","contact.ctaP":"Write to order a website, bot or application.","contact.ctaBtn":"Write now","contact.qr":"Scan the QR with Telegram","contact.qrGh":"Scan the QR to open GitHub",
-      "footer.rights":"All rights reserved.","footer.uz":"Uzbekistan:","toast":"Email copied!",
+      "footer.rights":"All rights reserved.","footer.uz":"Uzbekistan:","footer.visits":"Site visitors:","toast":"Email copied!",
       "ratings.kicker":"Ratings","ratings.title1":"Rate the","ratings.title2":"portfolio","ratings.right":"Your rating appears in the list below.",
       "ratings.prompt":"How many stars?","ratings.commentPh":"Feedback (optional)...","ratings.send":"Send rating",
       "ratings.thanks":"Thanks! Your rating was saved.","ratings.fail":"Couldn't send rating — try again.",
@@ -1311,7 +1312,7 @@
       "form.nameL":"Ваше имя","form.contactL":"Telegram / email","form.msgL":"Ваше сообщение","form.send":"<svg class='ic' aria-hidden='true'><use href='#i-plane'/></svg> Отправить",
       "form.err":"Заполните, пожалуйста, имя, контакт и сообщение.","form.fail":"Сообщение не отправлено. Напишите в Telegram: @Laziz_Abduahadov","form.ok":"✅ Ваше сообщение отправлено! Скоро отвечу.",
       "contact.ctaT":"Создадим ваш","contact.ctaT2":"проект вместе!","contact.ctaP":"Напишите, чтобы заказать сайт, бота или программу.","contact.ctaBtn":"Написать сейчас","contact.qr":"Отсканируйте QR в Telegram","contact.qrGh":"Отсканируйте QR для GitHub",
-      "footer.rights":"Все права защищены.","footer.uz":"Узбекистан:","toast":"Email скопирован!",
+      "footer.rights":"Все права защищены.","footer.uz":"Узбекистан:","footer.visits":"Посетителей сайта:","toast":"Email скопирован!",
       "ratings.kicker":"Оценки","ratings.title1":"Оцените","ratings.title2":"портфолио","ratings.right":"Ваша оценка появится в списке ниже.",
       "ratings.prompt":"Сколько звёзд?","ratings.commentPh":"Отзыв (необязательно)...","ratings.send":"Отправить",
       "ratings.thanks":"Спасибо! Оценка сохранена.","ratings.fail":"Не удалось отправить — попробуйте ещё раз.",
@@ -1967,6 +1968,15 @@
     } catch (e) {}
   }
   setTimeout(detectByGeo, 1000);
+
+  /* TASHRIF SONINI YUKLASH */
+  try {
+    fetch("/api/visits").then(function (r) { return r.json(); }).then(function (d) {
+      if (d && d.ok && document.getElementById("visitCount")) {
+        document.getElementById("visitCount").textContent = String(d.visits);
+      }
+    }).catch(function () {});
+  } catch (e) {}
 })();
 </script>
 <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
