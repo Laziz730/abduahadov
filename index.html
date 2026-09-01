@@ -872,10 +872,6 @@
         <div class="model-stage"><model-viewer alt="BMW i8" data-src="models/bmw_i8.glb" camera-controls auto-rotate rotation-per-second="18%" shadow-intensity="0.6" environment-image="neutral" exposure="0.85"></model-viewer></div>
         <small>BMW i8</small>
       </div>
-      <div class="model">
-        <div class="model-stage"><model-viewer alt="Bugatti La Voiture Noire" data-src="models/bugatti_-_la_voiture_noire.glb" camera-controls auto-rotate rotation-per-second="18%" shadow-intensity="0.6" environment-image="neutral" exposure="0.85"></model-viewer></div>
-        <small>Bugatti La Voiture Noire</small>
-      </div>
     </div>
     <div class="sound-hint" id="sndHint" hidden><svg class="ic" aria-hidden="true"><use href="#i-snd"/></svg> <span data-i18n="threed.sndHint">Ovoz chiqishi uchun biron joyni bosing — keyin mashinalar oldida ovoz eshitiladi.</span></div>
   </div>
@@ -1069,7 +1065,7 @@
   <p>© <span id="year">2026</span> <b>Abdulaziz Abduahadov</b>. <span data-i18n="footer.rights">Barcha huquqlar himoyalangan.</span></p>
   <p style="margin-top:8px">Made with <svg class="ic" aria-hidden="true"><use href="#i-heart"/></svg> + <svg class="ic" aria-hidden="true"><use href="#i-coffee"/></svg> in Uzbekistan</p>
   <p style="margin-top:6px"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg> <span data-i18n="footer.uz">O'zbekiston:</span> <b id="uztime">--:--:--</b></p>
-  <p style="margin-top:6px"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg> <span data-i18n="footer.visits">Saytga kirganlar:</span> <img src="https://hits.sh/abduahadov.wwwi.uz.svg?label=&color=7c3aed&style=flat-square&logoColor=white" alt="0" style="vertical-align:middle;height:18px;border-radius:4px" /></p>
+  <p style="margin-top:6px"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg> <span data-i18n="footer.visits">Saytga kirganlar:</span> <img src="https://hits.sh/abduahadov.wwwi.uz.svg?label=&color=7c3aed&style=flat-square&logoColor=white" alt="0" style="vertical-align:middle;height:18px;border-radius:4px" loading="lazy" /></p>
 </footer>
 
 <a class="fab" href="https://t.me/Laziz_Abduahadov?text=%D0%A1alom%2C%20portfolio%20saytingizdan%20yozdim." target="_blank" rel="noopener" title="Telegramda yozish"><img src="telegram.png" alt="Telegram" /></a>
@@ -1724,14 +1720,18 @@
           if (en.isIntersecting) {
             var mv = en.target;
             mv.setAttribute("src", mv.getAttribute("data-src"));
+            loadModelViewer();
             mo.unobserve(mv);
           }
         });
-      }, { rootMargin: "400px" });
+      }, { rootMargin: "600px" });
       mvs.forEach(function (mv) { mo.observe(mv); });
     } else {
       mvs.forEach(function (mv) { mv.setAttribute("src", mv.getAttribute("data-src")); });
+      loadModelViewer();
     }
+  } else {
+    loadModelViewer();
   }
 
   /* 3D OVOZ: mashinalar ko'ringanda ovoz chiqadi */
@@ -1957,6 +1957,21 @@
   } catch (e) {}
 })();
 </script>
-<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+<script>
+/* :=MODEL-VIEWER DINAMIK YUKLASH: faqat 3D model ko'ringanda (tezlik uchun) */
+var mvl = false;
+function loadModelViewer() {
+  if (mvl || typeof document === "undefined") return;
+  mvl = true;
+  var t = document.createElement("script");
+  t.type = "module";
+  t.src = "https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js";
+  document.head.appendChild(t);
+}
+window.addEventListener("load", function () {
+  if (document.querySelector("model-viewer[data-src]")) { /* 3D bor — observer kutadi */ }
+  else { loadModelViewer(); }
+});
+</script>
 </body>
 </html>
