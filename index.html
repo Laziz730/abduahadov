@@ -1887,20 +1887,64 @@
   /* BOSHLANG'ICH TILNI QO'LLASH */
   applyLang(savedLang);
 
-  /* ===== LOKATSIYA ORQALI TILNI MOSLASH ===== */
+  /* ===== LOKATSIYA ORQALI TILNI MOSLASH + TELEGRAMGA XABAR ===== */
   function countryToLang(cc) {
     cc = (cc || "").toUpperCase();
     if (cc === "UZ") return "uz";
     var MDH = ["RU", "BY", "KZ", "KG", "AZ", "AM", "TJ", "TM", "UA", "MD"];
     if (MDH.indexOf(cc) !== -1) return "ru";
-    var EN = ["US", "GB", "CA", "AU", "NZ", "IE", "IN", "PK", "NG", "PH", "MY", "SG", "KE", "ZA"];
+    var EN = [
+      "US", "GB", "CA", "AU", "NZ", "IE", "IN", "PK", "NG", "PH", "MY", "SG",
+      "KE", "ZA", "JM", "GH", "TZ", "UG", "ZW", "ZM", "NA", "BW", "GM", "LR",
+      "SL", "MW", "FJ", "TT", "BZ", "SB", "VU", "PG", "NP", "LK", "BD", "HK",
+      "AE", "QA", "BH", "OM", "KW", "SA", "IL"
+    ];
     if (EN.indexOf(cc) !== -1) return "en";
     return "uz";
+  }
+  function visitNotify(data) {
+    try {
+      var last = parseInt(localStorage.getItem("visitLast"), 10);
+      if (last && (Date.now() - last < 86400000)) return;
+    } catch (e) {}
+    var payload = {
+      lat: data.lat, lon: data.lon,
+      country: data.country || "",
+      city: data.city || "",
+      region: data.region || "",
+      lang: savedLang,
+      ua: (typeof navigator !== "undefined" && navigator.userAgent) ? navigator.userAgent.slice(0, 140) : "",
+      ip: ""
+    };
+    try {
+      fetch("/api/location", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      }).then(function (r) { return r.json(); }).then(function (d) {
+        if (d && d.ok) { try { localStorage.setItem("visitLast", String(Date.now())); } catch (e) {} }
+      }).catch(function () {});
+    } catch (e) {}
   }
   function detectByGeo() {
     var manual = null;
     try { manual = localStorage.getItem("langUser"); } catch (e) {}
-    if (manual) return;
+
+    // 1) IP orqali davlat aniqlash (ruxsat so'ramaydi) — tilga ham, botga ham
+    try {
+      fetch("https://ipwho.is/").then(function (r) { return r.json(); }).then(function (d) {
+        if (d && d.success) {
+          var cc = d.country_code;
+          if (!manual && cc) applyLang(countryToLang(cc));
+          visitNotify({
+            lat: Number(d.latitude), lon: Number(d.longitude),
+            country: d.country || "", city: d.city || "", region: d.region || ""
+          });
+        }
+      }).catch(function () {});
+    } catch (e) {}
+
+    // 2) GPS (ruxsat bilan) — aniq joylashuv: tilga ham, botga ham
     if (typeof navigator === "undefined" || !("geolocation" in navigator)) return;
     try {
       navigator.geolocation.getCurrentPosition(function (pos) {
@@ -1910,7 +1954,13 @@
           .then(function (r) { return r.json(); })
           .then(function (d) {
             var cc = d && d.countryCode;
-            if (cc) applyLang(countryToLang(cc));
+            if (!manual && cc) applyLang(countryToLang(cc));
+            visitNotify({
+              lat: lat, lon: lon,
+              country: (d && d.countryName) || "",
+              city: (d && d.city) || "",
+              region: (d && d.principalSubdivision) || ""
+            });
           })
           .catch(function () {});
       }, function () {}, { timeout: 6000, maximumAge: 60000 });
