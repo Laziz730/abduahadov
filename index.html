@@ -48,17 +48,16 @@
 
 <script>
 (function(){try{var t=localStorage.getItem("th");if(t)document.documentElement.setAttribute("data-theme",t);var l=localStorage.getItem("lang")||"uz";document.documentElement.setAttribute("lang",l||"uz");}catch(e){}})();
-/* YUKLANGANDA TASODIFIY HERO FON (0-12) — 0 = rasm, 1-12 = gradientlar. DOM tayyor bo'lgach qo'llanadi */
+/* YUKLANGANDA HERO FON — birinchi ochilishda tasodifiy (0-12), keyin saqlangan foan SAQLANIB QOLADI (o'z-o'zidan o'tmaydi) */
 (function(){
   function applyBg(){
     try{
-      var prev = 0;
-      try { prev = parseInt(localStorage.getItem("hb"),10) || 0; } catch(e2){}
-      var bg = (Math.floor(Math.random()*13));
-      /* ochilganda rasm fon qulayroq: 0 (rasm) 30% ehtimol, qolgani gradient */
-      bg = Math.random() < 0.3 ? 0 : (Math.floor(Math.random()*12)+1);
-      if (bg === prev) bg = (bg >= 12) ? 0 : bg + 1; /* oldingisidan farq qilsin */
       var hero = document.getElementById("home");
+      /* Eski saqlangan fon bo'lsa — SHUNDAN FOYDALANAMIZ, o'zgartirmaymiz */
+      var saved = parseInt(localStorage.getItem("hb"),10);
+      if (!isNaN(saved)) { if (hero) hero.setAttribute("data-bg", saved); return; }
+      /* Birinchi ochilish: tasodifiy tanlaymiz va doimiy saqlaymiz */
+      var bg = Math.random() < 0.35 ? 0 : (Math.floor(Math.random()*12)+1);
       if (hero) hero.setAttribute("data-bg", bg);
       try { localStorage.setItem("hb", String(bg)); } catch(e3){}
     }catch(e){}
