@@ -48,14 +48,16 @@
 
 <script>
 (function(){try{var t=localStorage.getItem("th");if(t)document.documentElement.setAttribute("data-theme",t);var l=localStorage.getItem("lang")||"uz";document.documentElement.setAttribute("lang",l||"uz");}catch(e){}})();
-/* YUKLANGANDA TASODIFIY HERO FON (1-12) — har ochilishda boshqa fon. DOM tayyor bo'lgach qo'llanadi */
+/* YUKLANGANDA TASODIFIY HERO FON (0-12) — 0 = rasm, 1-12 = gradientlar. DOM tayyor bo'lgach qo'llanadi */
 (function(){
   function applyBg(){
     try{
       var prev = 0;
       try { prev = parseInt(localStorage.getItem("hb"),10) || 0; } catch(e2){}
-      var bg = (Math.floor(Math.random()*12)+1);
-      if (bg === prev) bg = (bg % 12) + 1; /* oldingisidan farq qilsin */
+      var bg = (Math.floor(Math.random()*13));
+      /* ochilganda rasm fon qulayroq: 0 (rasm) 30% ehtimol, qolgani gradient */
+      bg = Math.random() < 0.3 ? 0 : (Math.floor(Math.random()*12)+1);
+      if (bg === prev) bg = (bg >= 12) ? 0 : bg + 1; /* oldingisidan farq qilsin */
       var hero = document.getElementById("home");
       if (hero) hero.setAttribute("data-bg", bg);
       try { localStorage.setItem("hb", String(bg)); } catch(e3){}
@@ -173,6 +175,8 @@
 
   /* HERO */
   .hero{position:relative;overflow:hidden;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:110px 0 70px}
+  .hero{position:relative}
+  .hero[data-bg="0"]{background:linear-gradient(rgba(5,7,20,.65),rgba(5,7,20,.85)),url("pexels-pixelcop-2680270.jpg") center/cover no-repeat}
   .hero[data-bg="1"]{background:linear-gradient(135deg,#1e1b4b 0%,#312e81 50%,#0e7490 100%)}
   .hero[data-bg="2"]{background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 55%,#7c3aed 100%)}
   .hero[data-bg="3"]{background:linear-gradient(135deg,#18181b 0%,#701a75 50%,#be185d 100%)}
@@ -1444,7 +1448,8 @@
   function cycleBg() {
     if (!hero) return;
     var cur = parseInt(hero.getAttribute("data-bg"), 10) || 0;
-    var next = (cur % 12) + 1;
+    var next = (cur % 13) + 1; /* 0-12, 12 dan keyin 1 ga qaytadi */
+    if (next === 13) next = 1;
     hero.setAttribute("data-bg", next);
     try { localStorage.setItem("hb", String(next)); } catch (e) {}
   }
