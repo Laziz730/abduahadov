@@ -1,14 +1,14 @@
-// Vercel serverless: Gemini AI yordamchi.
+﻿// Vercel serverless: Gemini AI yordamchi.
 // Token server tomonda saqlanadi (brauzerga ko'rinmaydi).
 // Sozlash: Vercel -> Settings -> Environment Variables -> GEMINI_API_KEY
 //   qiymat sifatida sizning Gemini API kalitingizni kiriting (AI Studio'dan).
 //   Agar env o'rnatilmagan bo'lsa, fallback quyidagi qiymat (repoda ochiq
-//   ko'rinadi — production uchun env tavsiya).
+//   ko'rinadi вЂ” production uchun env tavsiya).
 
 let fallbackKey = process.env.GEMINI_API_KEY || "";
 
 async function callGemini(messages, key, base) {
-  const model = base || "gemini-2.0-flash";
+  const model = base || "gemini-3.6-flash";
   const url = "https://generativelanguage.googleapis.com/v1beta/models/" +
     model + ":generateContent";
   const contents = messages.map(function (m) {
@@ -53,7 +53,7 @@ module.exports = async function handler(req, res) {
 
   const system =
     "Sen - Abdulaziz Abduahadovning shaxsiy portfolio saytining AI yordamchisisiz. " +
-    "Abdulaziz — 11 yoshli Full-Stack dasturchi, Samarqand, Oqdaryo tumanidan. " +
+    "Abdulaziz вЂ” 11 yoshli Full-Stack dasturchi, Samarqand, Oqdaryo tumanidan. " +
     "Uning quyidagi bo'limlari bor va foydalanuvchi o'sha bo'limga o'tishni so'rasa, " +
     "javob oxiriga shu formatda maxsus markerni qo'shish kerak: [NAV:section_id]. " +
     "Mavjud bo'limlar: home (Bosh), about (Haqimda), skills (Mahorat), services (Xizmatlar), " +

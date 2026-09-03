@@ -2211,29 +2211,37 @@ window.addEventListener("load", function () {
 
   /* bo'limga bog'lig so'zlar (Gemini ishlamasa fallback) */
   function detectNav(q) {
-    q = q.toLowerCase();
-    if (/sertifikat|certificat|credentials|diplom/i.test(q)) return "certs";
-    if (/aloqa|bog'lan|contact|telegram|email|xabar/i.test(q)) return "contact";
-    if (/loyiha|projekt|project/i.test(q)) return "projects";
-    if (/mahorat|skill|til(lar)?|yo'nali|know/i.test(q)) return "skills";
-    if (/xizmat|service|buyurtma/i.test(q)) return "services";
-    if (/yo'l|timeline|yo'nalish|history/i.test(q)) return "timeline";
-    if (/haqimda|about|o'zi|biografiya|kim/i.test(q)) return "about";
-    if (/bosh|home|yuqori|asion/i.test(q)) return "home";
+    q = " " + q.toLowerCase() + " ";
+    /* o'tish niyatini anglatuvchi fe'l/so'zlar */
+    var verb = /(o't|o'tish|ko'rsat|ko'rsatish|och|ochish|bor|borish|yubor|go to|show|open|navigate|bo'limiga|bo'lim)=?/;
+    function hasNav(t) {
+      return verb.test(q) && t.test(q);
+    }
+    if (hasNav(/sertifikat|certificat|credentials|diplom/)) return "certs";
+    if (hasNav(/aloqa|bog'lan|contact|telegram|email|xabar|pismo/)) return "contact";
+    if (hasNav(/loyiha|loyhalar|project|projects/)) return "projects";
+    if (hasNav(/mahorat|skill|skills|til(lar)?|know/)) return "skills";
+    if (hasNav(/xizmat|service|buyurtma/)) return "services";
+    if (hasNav(/yo'l|timeline|yo'nalish|history/)) return "timeline";
+    if (hasNav(/haqimda|about|o'zi|biografiya/)) return "about";
+    if (hasNav(/bosh|home|yuqori|asion/)) return "home";
     return null;
   }
 
   function ask(text, isVoice) {
     var q = String(text || "").trim();
     if (!q) return;
-    if (isVoice) {
-      /* ovozli bo'limga o'tish tez-tez bo'ladi — agar aniqlansa avval o'tamiz */
-      var n = detectNav(q);
-      if (n) { addMsg(q, "user"); scrollToSection(n); }
-    } else {
-      addMsg(q, "user");
-    }
     input.value = "";
+    if (isVoice) addMsg('"' + q + '"', "user"); else addMsg(q, "user");
+
+    /* bo'limga o'tish buyrug'i bo'lsa — to'g'ridan - to'g'ri o'tamiz (Gemini kutmagan) */
+    var nav = detectNav(q);
+    if (nav) {
+      scrollToSection(nav);
+      addMsg("Bo'limga o'tdim ✓", "bot");
+      return;
+    }
+
     var t = addMsg("...", "bot");
     t.classList.add("ai-typing");
 

@@ -1,0 +1,7 @@
+# Local maxfiy sozlamalar (xtonlar va boshqa secretlar)
+local.env
+.env
+*.local.env
+
+# Node
+node_modules/
