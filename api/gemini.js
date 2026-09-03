@@ -1,0 +1,78 @@
+// Vercel serverless: Gemini AI yordamchi.
+// Token server tomonda saqlanadi (brauzerga ko'rinmaydi).
+// Sozlash: Vercel -> Settings -> Environment Variables -> GEMINI_API_KEY
+//   qiymat sifatida sizning Gemini API kalitingizni kiriting (AI Studio'dan).
+//   Agar env o'rnatilmagan bo'lsa, fallback quyidagi qiymat (repoda ochiq
+//   ko'rinadi — production uchun env tavsiya).
+
+let fallbackKey = process.env.GEMINI_API_KEY || "";
+
+async function callGemini(messages, key, base) {
+  const model = base || "gemini-2.0-flash";
+  const url = "https://generativelanguage.googleapis.com/v1beta/models/" +
+    model + ":generateContent";
+  const contents = messages.map(function (m) {
+    return { role: m.role === "assistant" ? "model" : "user", parts: [{ text: m.text }] };
+  });
+  const r = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-goog-api-key": key,
+    },
+    body: JSON.stringify({
+      contents: contents,
+      generationConfig: { temperature: 0.7, maxOutputTokens: 700 },
+    }),
+  });
+  if (!r.ok) {
+    const txt = await r.text().catch(function () { return ""; });
+    throw new Error("Gemini " + r.status + ": " + txt.slice(0, 300));
+  }
+  const data = await r.json();
+  try {
+    return data.candidates[0].content.parts.map(function (p) { return p.text || ""; }).join(" ").trim();
+  } catch (e) {
+    throw new Error("Javobni pars qilib bo'lmadi");
+  }
+}
+
+module.exports = async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ ok: false, error: "Method not allowed" });
+  }
+  let body = {};
+  try { body = typeof req.body === "string" ? JSON.parse(req.body) : (req.body || {}); } catch (e) { body = {}; }
+  const q = String(body.q || body.message || "").trim();
+  if (!q) return res.status(400).json({ ok: false, error: "empty" });
+
+  const key = process.env.GEMINI_API_KEY || fallbackKey;
+  if (!key) {
+    return res.status(500).json({ ok: false, error: "GEMINI_API_KEY not set" });
+  }
+
+  const system =
+    "Sen - Abdulaziz Abduahadovning shaxsiy portfolio saytining AI yordamchisisiz. " +
+    "Abdulaziz — 11 yoshli Full-Stack dasturchi, Samarqand, Oqdaryo tumanidan. " +
+    "Uning quyidagi bo'limlari bor va foydalanuvchi o'sha bo'limga o'tishni so'rasa, " +
+    "javob oxiriga shu formatda maxsus markerni qo'shish kerak: [NAV:section_id]. " +
+    "Mavjud bo'limlar: home (Bosh), about (Haqimda), skills (Mahorat), services (Xizmatlar), " +
+    "projects (Loyihalar), certs (Sertifikatlar), timeline (Yo'l), contact (Aloqa). " +
+    "Agar buyruq bo'limga o'tishni so'rasa (masalan 'sertifikatlar bo'limiga o't'), " +
+    "javobga [NAV:certs] qo'sh. Oddiy savolga esa FAQ'ga o'xshash qisqa, do'stona, o'zbekcha javob ber. " +
+    "Qisqa va tushunarli bo'l. FAQ javoblar 'buyruq topilmadi' emas, aniq ma'lumot bering.";
+
+  const messages = [
+    { role: "user", text: system },
+    { role: "user", text: "Vazifa: quyidagi savolga javob ber: " + q },
+  ];
+
+  try {
+    const answer = await callGemini(messages, key);
+    const navMatch = answer.match(/\[NAV:([a-zA-Z0-9_-]+)\]/);
+    const clean = answer.replace(/\[NAV:[a-zA-Z0-9_-]+\]/g, "").trim();
+    return res.json({ ok: true, answer: clean || answer, nav: navMatch ? navMatch[1] : null });
+  } catch (e) {
+    return res.status(502).json({ ok: false, error: String(e.message || e) });
+  }
+};

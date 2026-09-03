@@ -565,6 +565,11 @@
   .ai-send .ic{width:1.1rem;height:1.1rem}
   .ai-send:hover{opacity:.85}
   .ai-typing{color:var(--muted);font-style:italic;font-size:.82rem}
+  .ai-mic{width:40px;height:40px;border-radius:12px;border:1px solid rgba(124,58,237,.5);background:var(--bg2);color:#7c3aed;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .15s}
+  .ai-mic .ic{width:1.1rem;height:1.1rem}
+  .ai-mic:hover{background:#7c3aed;color:#fff}
+  .ai-mic.rec{background:#dc2626;color:#fff;animation:fabPulse 1.4s infinite}
+
 
 
   .to-top{position:fixed;left:22px;bottom:22px;width:48px;height:48px;border-radius:14px;z-index:70;border:1px solid var(--line);
@@ -1196,6 +1201,7 @@
   </div>
   <div class="ai-input-line">
     <input type="text" id="aiInput" placeholder="Savolingizni yozing..." autocomplete="off" aria-label="AI savol" />
+    <button type="button" class="ai-mic" id="aiMic" aria-label="Ovozli kirish"><svg class="ic" aria-hidden="true"><use href="#i-snd"/></svg></button>
     <button type="button" class="ai-send" id="aiSend" aria-label="Yuborish"><svg class="ic" aria-hidden="true"><use href="#i-plane"/></svg></button>
   </div>
 </div>
@@ -2178,33 +2184,20 @@ window.addEventListener("load", function () {
 })();
 </script>
 <script>
-/* ===== AI YORDAMCHI CHAT (offline — portfolio haqida bilimlar) ===== */
+/* ===== AI YORDAMCHI CHAT (Gemini + ovozli kirish + bo'limga o'tish) ===== */
 (function () {
   var fab = document.getElementById("aiFab");
   var panel = document.getElementById("aiPanel");
   var bodyEl = document.getElementById("aiBody");
   var input = document.getElementById("aiInput");
   var send = document.getElementById("aiSend");
+  var mic = null;
 
-  var KNOWLEDGE = [
-    { k: /salom|assalom|hey|hi(yo|)|privet/i, a: "Salom! Qanday yordam bera olaman? Abdulaziz, loyihalar yoki xizmatlar haqida so'rang." },
-    { k: /kim|isman|o'zing|who|about/i, a: "Abdulaziz Abduahadov — 11 yoshli Full-Stack dasturchi, Samarqand, Oqdaryo tumanidan. 2015-yil 21-mayda tug'ilgan." },
-    { k: /yosh|nech[ae]|age/i, a: "Abdulaziz 2015-yilda tug'ilgan — hozir 11 yoshda." },
-    { k: /skill|mahorat|bils[ae]n|know|qanday tillar/i, a: "Java, Frontend (HTML/CSS/JS), Backend, Node.js, SQL, PWA, Rate Limiting va 3D (Three.js). Shuningdek TypeScript, Python, C/C++/C#, Go." },
-    { k: /loyiha|project|loyihalar/i, a: "Loyihalari: 3D o'yin (Three.js), Open Budget Simulator, Senga U8 AI, Telegram bot, Tekshir AI, Fast Edicotion. Hammasi github.com/Laziz730 da." },
-    { k: /aloqa|bog'lan|contact|telegram|email|github/i, a: "Aloqa: Telegram @Laziz_Abduahadov, Email sevaraximmotova702@gmail.com, GitHub github.com/Laziz730." },
-    { k: /xizmat|buyurtma|service|ish|sayt/i, a: "Sayt, Telegram bot, backend, API va 3D loyihalar yaratib beraman. Buyurtma uchun Telegram orqali yozing: @Laziz_Abduahadov." },
-    { k: /rahmat|tashakkur|thanks/i, a: "Arzimaydi! Yana savolingiz bo'lsa, yozing. 😊" },
-    { k: /qanday(isiz|siz)|qales|yaqshimi|как|how are/i, a: "A'lo ishlayapman, rahmat! Sizga qanday yordam kerak?" },
-    { k: /(narx|baho|qancha|pul|price|cost)/i, a: "Loyiha narxi murakkabligiga bog'liq. Aniq narx va muddat uchun Telegram orqali bog'laning sir yozing." }
-  ];
-  var FALLBACK = "Kechirasiz, bu savolga hozircha aniq javobim yo'q. Batafsil ma'lumot uchun Telegram orqali yozing: @Laziz_Abduahadov.";
-
-  function answer(q) {
-    for (var i = 0; i < KNOWLEDGE.length; i++) {
-      if (KNOWLEDGE[i].k.test(q)) return KNOWLEDGE[i].a;
-    }
-    return FALLBACK;
+  function scrollToSection(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    try { history.replaceState(null, "", "#" + id); } catch (e) {}
   }
 
   function addMsg(text, who) {
@@ -2216,27 +2209,93 @@ window.addEventListener("load", function () {
     return d;
   }
 
-  function openPanel() { panel.hidden = false; input.focus(); }
-  function closePanel() { panel.hidden = true; }
+  /* bo'limga bog'lig so'zlar (Gemini ishlamasa fallback) */
+  function detectNav(q) {
+    q = q.toLowerCase();
+    if (/sertifikat|certificat|credentials|diplom/i.test(q)) return "certs";
+    if (/aloqa|bog'lan|contact|telegram|email|xabar/i.test(q)) return "contact";
+    if (/loyiha|projekt|project/i.test(q)) return "projects";
+    if (/mahorat|skill|til(lar)?|yo'nali|know/i.test(q)) return "skills";
+    if (/xizmat|service|buyurtma/i.test(q)) return "services";
+    if (/yo'l|timeline|yo'nalish|history/i.test(q)) return "timeline";
+    if (/haqimda|about|o'zi|biografiya|kim/i.test(q)) return "about";
+    if (/bosh|home|yuqori|asion/i.test(q)) return "home";
+    return null;
+  }
 
-  fab.addEventListener("click", function () { if (panel.hidden) openPanel(); else closePanel(); });
-  document.getElementById("aiX").addEventListener("click", closePanel);
-
-  function ask() {
-    var q = input.value.trim();
+  function ask(text, isVoice) {
+    var q = String(text || "").trim();
     if (!q) return;
-    addMsg(q, "user");
+    if (isVoice) {
+      /* ovozli bo'limga o'tish tez-tez bo'ladi — agar aniqlansa avval o'tamiz */
+      var n = detectNav(q);
+      if (n) { addMsg(q, "user"); scrollToSection(n); }
+    } else {
+      addMsg(q, "user");
+    }
     input.value = "";
     var t = addMsg("...", "bot");
     t.classList.add("ai-typing");
-    setTimeout(function () {
-      t.classList.remove("ai-typing");
-      t.textContent = answer(q.toLowerCase());
-    }, 500 + Math.random() * 500);
+
+    fetch("/api/gemini", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ q: q })
+    }).then(function (r) { return r.json().catch(function () { return {}; }); })
+      .then(function (data) {
+        t.classList.remove("ai-typing");
+        if (data && data.ok && data.answer) {
+          t.textContent = data.answer;
+          if (data.nav) scrollToSection(data.nav);
+        } else {
+          t.textContent = "Sanalan xatolik yuz berdi. Iltimos keyinroq urinib ko'ring yoki Telegram orqali yozing: @Laziz_Abduahadov.";
+        }
+      })
+      .catch(function () {
+        t.classList.remove("ai-typing");
+        t.textContent = "Kechirasiz, AI hozircha javob bera olmadi. Telegram orqali yozing: @Laziz_Abduahadov.";
+      });
   }
 
-  send.addEventListener("click", ask);
-  input.addEventListener("keydown", function (e) { if (e.key === "Enter") ask(); });
+  /* ---- OVOZLI KIRISH (mikrofon) ---- */
+  var micBtn = document.getElementById("aiMic");
+  function startMic() {
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) { addMsg("Brauzeringiz ovozli kiritishni qo'llab-quvvatlamaydi.", "bot"); return; }
+    if (mic) { mic.stop(); mic = null; micBtn.classList.remove("rec"); return; }
+    var rec = new SR();
+    rec.lang = "uz-UZ"; /* uz/ru/en moslash mumkin */
+    rec.interimResults = false;
+    rec.maxAlternatives = 1;
+    rec.onstart = function () { mic = rec; micBtn.classList.add("rec"); };
+    rec.onresult = function (e) {
+      var txt = e.results[0][0].transcript;
+      var n = detectNav(txt);
+      if (n) { addMsg('"' + txt + '"', "user"); scrollToSection(n); addMsg("Bo'limga o'tdim ✓", "bot"); }
+      else { ask(txt, true); }
+    };
+    rec.onerror = function () { mic = null; micBtn.classList.remove("rec"); addMsg("Ovozli kiritishda xatolik. Mikrofonga ruxsat bering.", "bot"); };
+    rec.onend = function () { mic = null; micBtn.classList.remove("rec"); };
+    rec.start();
+  }
+  micBtn.addEventListener("click", startMic);
+
+  function openPanel() {
+    panel.hidden = false;
+    input.focus();
+  }
+  function closePanel() {
+    panel.hidden = true;
+    if (mic) { mic.stop(); mic = null; micBtn.classList.remove("rec"); }
+  }
+
+  fab.addEventListener("click", function () {
+    if (panel.hidden) openPanel(); else closePanel();
+  });
+  document.getElementById("aiX").addEventListener("click", closePanel);
+
+  send.addEventListener("click", function () { ask(input.value, false); });
+  input.addEventListener("keydown", function (e) { if (e.key === "Enter") ask(input.value, false); });
 })();
 </script>
 </body>
