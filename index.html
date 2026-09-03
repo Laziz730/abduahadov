@@ -505,6 +505,24 @@
   .fab img{width:31px;height:31px;border-radius:50%}
   .fab::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid rgba(34,211,238,.7);animation:fabPulse 2s infinite}
   @keyframes fabPulse{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.55);opacity:0}}
+
+  /* ===== YASHIRIN TERMINAL (laziz) ===== */
+  .term{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,92vw);z-index:120;
+    background:#0b0f1a;border:1px solid #2a3550;border-radius:14px;box-shadow:0 30px 70px rgba(0,0,0,.7);overflow:hidden;font-family:"Consolas","Cascadia Code",monospace;animation:termIn .25s ease}
+  .term[hidden]{display:none}
+  @keyframes termIn{from{opacity:0;transform:translate(-50%,-50%) scale(.92)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+  .term-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#141a2b;border-bottom:1px solid #2a3550}
+  .term-dot{width:12px;height:12px;border-radius:50%}
+  .term-title{flex:1;text-align:center;color:#8fa3c8;font-size:.8rem}
+  .term-x{background:none;border:none;color:#8fa3c8;font-size:1.1rem;cursor:pointer;line-height:1}
+  .term-x:hover{color:#ff5f56}
+  .term-body{height:230px;overflow-y:auto;padding:14px 16px;color:#cde7ff;font-size:.86rem;line-height:1.55;white-space:pre-wrap;word-break:break-word}
+  .term-body a{color:#7dd3fc;text-decoration:underline}
+  .term-body ::selection{background:#7c3aed;color:#fff}
+  .term-input-line{display:flex;align-items:center;gap:8px;padding:8px 14px;border-top:1px solid #2a3550;background:#0b0f1a}
+  .prompt{color:#6ee7b7;font-weight:700}
+  .termm{animation:termIn .12s ease}
+
   .to-top{position:fixed;left:22px;bottom:22px;width:48px;height:48px;border-radius:14px;z-index:70;border:1px solid var(--line);
     background:rgba(13,16,36,.92);color:var(--text);font-size:1.2rem;cursor:pointer;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s,transform .2s}
   .to-top.show{opacity:1;visibility:visible}
@@ -1106,9 +1124,21 @@
   <p style="margin-top:8px">Made with <svg class="ic" aria-hidden="true"><use href="#i-heart"/></svg> + <svg class="ic" aria-hidden="true"><use href="#i-coffee"/></svg> in Uzbekistan</p>
   <p style="margin-top:6px"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg> <span data-i18n="footer.uz">O'zbekiston:</span> <b id="uztime">--:--:--</b></p>
   <p style="margin-top:6px"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg> <span data-i18n="footer.visits">Saytga kirganlar:</span> <img src="https://hits.sh/abduahadov.wwwi.uz.svg?label=&color=7c3aed&style=flat-square&logoColor=white" alt="0" style="vertical-align:middle;height:18px;border-radius:4px" loading="lazy" /></p>
+  <p style="margin-top:10px;font-size:.82rem;opacity:.75;letter-spacing:.04em"><b>Portfolio</b> — v1.0.0</p>
 </footer>
 
 <a class="fab" href="https://t.me/Laziz_Abduahadov?text=%D0%A1alom%2C%20portfolio%20saytingizdan%20yozdim." target="_blank" rel="noopener" title="Telegramda yozish"><img src="telegram.png" alt="Telegram" /></a>
+
+<!-- ===== YASHIRIN DASTURCHILAR TERMINALI (laziz yozganda ochiladi) ===== -->
+<div id="term" class="term" hidden>
+  <div class="term-bar">
+    <span class="term-dot" style="background:#ff5f56"></span><span class="term-dot" style="background:#ffbd2e"></span><span class="term-dot" style="background:#27c93f"></span>
+    <span class="term-title">abdulaziz@portfolio: ~</span>
+    <button type="button" class="term-x" id="termX" aria-label="Yopish">&times;</button>
+  </div>
+  <div class="term-body" id="termBody"><span class="prompt">&#9656;</span> Yashirin terminal. <b>help</b> deb yozing.<br></div>
+  <div class="term-input-line"><span class="prompt" id="termPrompt">abdulaziz@portfolio:~$</span><input type="text" id="termInput" autocomplete="off" spellcheck="false" aria-label="Terminal buyruq" /></div>
+</div>
 <button class="to-top" id="toTop" title="Yuqoriga" aria-label="Yuqoriga"><svg class="ic" aria-hidden="true"><use href="#i-up"/></svg></button>
 
 <div id="lightbox" role="dialog" aria-label="Sertifikat"><img src="" alt="Sertifikat" id="lightImg" /><button class="close" id="lightClose" aria-label="Yopish"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button></div>
@@ -2025,6 +2055,69 @@ window.addEventListener("load", function () {
   if (document.querySelector("model-viewer[data-src]")) { /* 3D bor — observer kutadi */ }
   else { loadModelViewer(); }
 });
+</script>
+<script>
+/* ===== YASHIRIN DASTURCHILAR TERMINALI (laziz yozganda ochiladi) ===== */
+(function () {
+  var term = document.getElementById("term");
+  var body = document.getElementById("termBody");
+  var input = document.getElementById("termInput");
+  var secret = "laziz";
+  var typed = "";
+
+  function print(html) {
+    var line = document.createElement("div");
+    line.className = "termm";
+    line.innerHTML = html;
+    body.appendChild(line);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function openTerm() {
+    if (!term) return;
+    term.hidden = false;
+    input.value = "";
+    input.focus();
+  }
+  function closeTerm() {
+    if (term) term.hidden = true;
+  }
+
+  /* laziz ketma-ket terilganda ochiladi */
+  document.addEventListener("keydown", function (e) {
+    if (e.key && e.key.length === 1) {
+      typed = (typed + e.key.toLowerCase()).slice(-secret.length);
+      if (typed === secret && term && term.hidden) { openTerm(); typed = ""; }
+    } else if (e.key === "Escape" && term && !term.hidden) {
+      closeTerm();
+    }
+  });
+
+  document.getElementById("termX").addEventListener("click", closeTerm);
+
+  /* buyruqlar */
+  input.addEventListener("keydown", function (e) {
+    if (e.key !== "Enter") return;
+    var cmd = input.value.trim().toLowerCase();
+    print('<span class="prompt">abdulaziz@portfolio:~$</span> ' + cmd.replace(/[<>&]/g, ""));
+    input.value = "";
+    if (cmd === "help") {
+      print("Mavjud buyruqlar: <b>about</b>, <b>skills</b>, <b>clear</b>, <b>exit</b>");
+    } else if (cmd === "about") {
+      print("Abdulaziz - 11 yoshli Full-Stack dasturchi. Samarqand, Oqdaryo tumanidan.");
+    } else if (cmd === "skills") {
+      print("Java, Frontend, Backend, Node.js, SQL, PWA, Rate Limiting va 3D (Three.js)");
+    } else if (cmd === "clear") {
+      body.innerHTML = "";
+    } else if (cmd === "exit") {
+      closeTerm();
+    } else if (cmd === "") {
+      /* bo'sh satr — hech narsa */
+    } else {
+      print('buyruq topilmadi: <span style="color:#ff8b8b">' + cmd + '</span>. <b>help</b> yozing.');
+    }
+  });
+})();
 </script>
 </body>
 </html>
