@@ -3,7 +3,7 @@
 // Sozlash: Vercel -> Settings -> Environment Variables -> GEMINI_API_KEY
 //   qiymat sifatida sizning Gemini API kalitingizni kiriting (AI Studio'dan).
 //   Agar env o'rnatilmagan bo'lsa, fallback quyidagi qiymat (repoda ochiq
-//   ko'rinadi вЂ” production uchun env tavsiya).
+//   ko'rinadi — production uchun env tavsiya).
 
 let fallbackKey = process.env.GEMINI_API_KEY || "";
 
@@ -53,7 +53,7 @@ module.exports = async function handler(req, res) {
 
   const system =
     "Sen - Abdulaziz Abduahadovning shaxsiy portfolio saytining AI yordamchisisiz. " +
-    "Abdulaziz вЂ” 11 yoshli Full-Stack dasturchi, Samarqand, Oqdaryo tumanidan. " +
+    "Abdulaziz — 11 yoshli Full-Stack dasturchi, Samarqand, Oqdaryo tumanidan. " +
     "Uning quyidagi bo'limlari bor va foydalanuvchi o'sha bo'limga o'tishni so'rasa, " +
     "javob oxiriga shu formatda maxsus markerni qo'shish kerak: [NAV:section_id]. " +
     "Mavjud bo'limlar: home (Bosh), about (Haqimda), skills (Mahorat), services (Xizmatlar), " +
