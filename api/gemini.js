@@ -24,6 +24,7 @@ async function callGemini(messages, key, base) {
       contents: contents,
       generationConfig: { temperature: 0.7, maxOutputTokens: 700 },
     }),
+    signal: AbortSignal.timeout(25000),
   });
   if (!r.ok) {
     const txt = await r.text().catch(function () { return ""; });
